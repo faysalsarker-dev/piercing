@@ -1,0 +1,136 @@
+[
+    {
+      "id": 1,
+      "title": "Premium Piercing Service",
+      "image": "https://impro.usercontent.one/appid/oneComWsb/domain/piercingsodermalm.se/media/piercingsodermalm.se/onewebmedia/OIP.jpeg?etag=%224cc0-66a11ef8%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=474%2B474&extract=59%2B22%2B407%2B360&quality=85",
+      "discount": "20% OFF",
+      "rating": 4.8,
+      "reviews": 120,
+      "description": "Get a safe and professional piercing experience with certified experts in a hygienic environment.",
+      "features": ["🩺 Hygienic", "⏳ 30 min", "💎 High-Quality Jewelry"],
+      "price": 39.99,
+      "original_price": 429.99
+    },
+    {
+      "id": 2,
+      "title": "Luxury Ear Piercing",
+      "image": "https://impro.usercontent.one/appid/oneComWsb/domain/piercingsodermalm.se/media/piercingsodermalm.se/onewebmedia/OIP.jpeg?etag=%224cc0-66a11ef8%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=474%2B474&extract=59%2B22%2B407%2B360&quality=85",
+      "discount": "15% OFF",
+      "rating": 4.7,
+      "reviews": 95,
+      "description": "Experience painless and safe ear piercing with expert jewelers and top-quality materials.",
+      "features": ["🩺 Sterilized Tools", "⚡ Quick & Safe", "✨ Hypoallergenic"],
+      "price": 42.49,
+      "original_price": 419.99
+    },
+    {
+      "id": 3,
+      "title": "Nose Piercing Package",
+      "image": "https://impro.usercontent.one/appid/oneComWsb/domain/piercingsodermalm.se/media/piercingsodermalm.se/onewebmedia/OIP.jpeg?etag=%224cc0-66a11ef8%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=474%2B474&extract=59%2B22%2B407%2B360&quality=85",
+      "discount": "10% OFF",
+      "rating": 4.9,
+      "reviews": 140,
+      "description": "Get a stylish nose piercing with premium jewelry options and a professional approach.",
+      "features": ["📌 Painless Process", "🌿 Skin-Friendly", "💎 Elegant Designs"],
+      "price": 44.99,
+      "original_price": 4329.99
+    },
+    {
+      "id": 4,
+      "title": "Helix & Cartilage Piercing",
+      "image": "https://impro.usercontent.one/appid/oneComWsb/domain/piercingsodermalm.se/media/piercingsodermalm.se/onewebmedia/OIP.jpeg?etag=%224cc0-66a11ef8%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=474%2B474&extract=59%2B22%2B407%2B360&quality=85",
+      "discount": "25% OFF",
+      "rating": 4.6,
+      "reviews": 80,
+      "description": "Stylish helix and cartilage piercings done by experts with a focus on hygiene and precision.",
+      "features": ["🔬 Precise Techniques", "🩺 Sterilized Tools", "💠 Unique Styles"],
+      "price": 37.49,
+      "original_price": 419.99
+    },
+    {
+      "id": 5,
+      "title": "Belly Button Piercing",
+      "image": "https://impro.usercontent.one/appid/oneComWsb/domain/piercingsodermalm.se/media/piercingsodermalm.se/onewebmedia/OIP.jpeg?etag=%224cc0-66a11ef8%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=474%2B474&extract=59%2B22%2B407%2B360&quality=85",
+      "discount": "30% OFF",
+      "rating": 4.9,
+      "reviews": 160,
+      "description": "Enhance your look with a stylish belly button piercing, performed safely and professionally.",
+      "features": ["📌 Quick & Safe", "💎 Fashionable Jewelry", "🛡️ Hygienic"],
+      "price": 34.99,
+      "original_price": 49.99
+    },
+    {
+      "id": 6,
+      "title": "Industrial Piercing",
+      "image": "https://impro.usercontent.one/appid/oneComWsb/domain/piercingsodermalm.se/media/piercingsodermalm.se/onewebmedia/OIP.jpeg?etag=%224cc0-66a11ef8%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=474%2B474&extract=59%2B22%2B407%2B360&quality=85",
+      "discount": "20% OFF",
+      "rating": 4.7,
+      "reviews": 130,
+      "description": "Stand out with an edgy industrial piercing done with precision and quality jewelry.",
+      "features": ["🩺 Professional Care", "💠 Stylish Barbell", "🔬 Precision Work"],
+      "price": 39.99,
+      "original_price": 49.99
+    },
+    {
+      "id": 7,
+      "title": "Eyebrow Piercing",
+      "image": "https://impro.usercontent.one/appid/oneComWsb/domain/piercingsodermalm.se/media/piercingsodermalm.se/onewebmedia/OIP.jpeg?etag=%224cc0-66a11ef8%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=474%2B474&extract=59%2B22%2B407%2B360&quality=85",
+      "discount": "15% OFF",
+      "rating": 4.5,
+      "reviews": 110,
+      "description": "Get a bold and stylish eyebrow piercing done with high-quality materials.",
+      "features": ["🩺 Safe Procedure", "⚡ Quick Healing", "💎 Trendy Look"],
+      "price": 42.49,
+      "original_price": 49.99
+    },
+    {
+      "id": 8,
+      "title": "Tongue Piercing",
+      "image": "https://impro.usercontent.one/appid/oneComWsb/domain/piercingsodermalm.se/media/piercingsodermalm.se/onewebmedia/OIP.jpeg?etag=%224cc0-66a11ef8%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=474%2B474&extract=59%2B22%2B407%2B360&quality=85",
+      "discount": "10% OFF",
+      "rating": 4.8,
+      "reviews": 115,
+      "description": "Achieve a unique look with a tongue piercing done in a safe and professional manner.",
+      "features": ["🛡️ Expert Supervision", "⚡ Painless Process", "💎 High-Quality Jewelry"],
+      "price": 44.99,
+      "original_price": 49.99
+    },
+    {
+      "id": 9,
+      "title": "Lip Piercing",
+      "image": "https://impro.usercontent.one/appid/oneComWsb/domain/piercingsodermalm.se/media/piercingsodermalm.se/onewebmedia/OIP.jpeg?etag=%224cc0-66a11ef8%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=474%2B474&extract=59%2B22%2B407%2B360&quality=85",
+      "discount": "20% OFF",
+      "rating": 4.9,
+      "reviews": 135,
+      "description": "Enhance your appearance with a stylish and professionally done lip piercing.",
+      "features": ["📌 Minimal Pain", "💎 Various Jewelry Options", "🩺 Clean & Safe"],
+      "price": 39.99,
+      "original_price": 49.99
+    },
+    {
+      "id": 10,
+      "title": "Tragus Piercing",
+      "image": "https://impro.usercontent.one/appid/oneComWsb/domain/piercingsodermalm.se/media/piercingsodermalm.se/onewebmedia/OIP.jpeg?etag=%224cc0-66a11ef8%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=474%2B474&extract=59%2B22%2B407%2B360&quality=85",
+      "discount": "25% OFF",
+      "rating": 4.7,
+      "reviews": 125,
+      "description": "Add a unique touch to your ear with a tragus piercing done by experts.",
+      "features": ["💠 Trendy & Stylish", "🩺 Hygienic Environment", "⚡ Quick Process"],
+      "price": 37.49,
+      "original_price": 49.99
+    },
+    {
+      "id": 11,
+      "title": "Septum Piercing",
+      "image": "https://impro.usercontent.one/appid/oneComWsb/domain/piercingsodermalm.se/media/piercingsodermalm.se/onewebmedia/OIP.jpeg?etag=%224cc0-66a11ef8%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=474%2B474&extract=59%2B22%2B407%2B360&quality=85",
+      "discount": "20% OFF",
+      "rating": 4.8,
+      "reviews": 110,
+      "description": "Achieve a bold look with a professionally done septum piercing using high-quality materials.",
+      "features": ["🩺 Safe Procedure", "💎 Stylish Jewelry", "⚡ Quick Healing"],
+      "price": 39.99,
+      "original_price": 49.99
+    }
+]
+   
+  
