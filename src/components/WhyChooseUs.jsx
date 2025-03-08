@@ -52,7 +52,7 @@ const WhyChooseUs = () => {
               "Hygienic & Safe Procedures",
               "Premium Quality Equipment & Products",
               "100% Customer Satisfaction Guarantee",
-              "Affordable & Transparent Pricing",
+             
             ].map((feature, index) => (
               <motion.div
                 key={index}
@@ -65,6 +65,7 @@ const WhyChooseUs = () => {
                 ✅ {feature}
               </motion.div>
             ))}
+            <button className="btn btn-primary">Book Now</button>
           </div>
         </motion.div>
       </div>
