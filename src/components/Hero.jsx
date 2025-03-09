@@ -1,12 +1,12 @@
 import React from 'react';
-
+import heroImge from "../assets/hero.jpg";
 const Hero = () => {
     return (
         <div className=''>
           <div
   className="hero min-h-screen my-4 "
   style={{
-    backgroundImage: "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
+    backgroundImage: `url(${heroImge})`,
   }}>
   <div className="hero-overlay "></div>
   <div className="hero-content text-neutral-content text-center">

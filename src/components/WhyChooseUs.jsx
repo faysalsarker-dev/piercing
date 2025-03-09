@@ -1,6 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+import Images from "../assets/whychooseus.jpg";
+
 const WhyChooseUs = () => {
   return (
     <div className="container mx-auto px-4 py-12">
@@ -26,7 +28,7 @@ const WhyChooseUs = () => {
           className="overflow-hidden rounded-lg shadow-lg"
         >
           <img
-            src="https://img.freepik.com/free-photo/patient-undergoing-microneedling-procedure_23-2149374104.jpg?t=st=1741366324~exp=1741369924~hmac=4eb3c999ee9b06f8bd7d1fd091b818200700e096645b3965faffba1723c0bb1a&w=740"
+            src={Images}
             alt="Why Choose Us"
             className="w-full h-80 object-cover transition-transform duration-300 hover:scale-105"
           />

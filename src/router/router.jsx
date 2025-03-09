@@ -4,6 +4,7 @@ import Root from "../root/Root";
 import Home from "../pages/home/Home";
 import ServicePost from "../pages/servicePage/ServicePost";
 import ServicesPage from "../pages/services/ServicesPage";
+import OnlineBooking from "../pages/onlineBooking/OnlineBooking";
 
 
 
@@ -26,6 +27,11 @@ const router = createBrowserRouter([
         path: 'all-services',  
         element:<ServicesPage/>
       },
+      {
+        path:'online-booking',
+        element:<OnlineBooking/>
+      }
+   
     ]
   },
 ]);
