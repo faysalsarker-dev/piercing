@@ -14,7 +14,7 @@ const WhyChooseUs = () => {
         viewport={{ once: true }}
         className="text-3xl font-bold text-center text-primary mb-8"
       >
-        Why Choose Us?
+        Why choose Piercing Södermalm?
       </motion.h2>
 
       {/* Content */}
@@ -50,10 +50,10 @@ const WhyChooseUs = () => {
           {/* Feature List */}
           <div className="space-y-3">
             {[
-              "Certified & Experienced Professionals",
-              "Hygienic & Safe Procedures",
-              "Premium Quality Equipment & Products",
-              "100% Customer Satisfaction Guarantee",
+              "⭐ Experience and security – Certified piercer with a medical background.",
+              "⭐ Sterile tools and jewelry – We follow strict hygiene procedures to minimize the risk of infections.",
+              "⭐ For all ages – We pierce both adults and children and offer gentle ear piercing for babies.",
+              "⭐ Central location in Stockholm – Easily accessible piercing studio on Södermalm.",
              
             ].map((feature, index) => (
               <motion.div
@@ -64,7 +64,7 @@ const WhyChooseUs = () => {
                 transition={{ duration: 0.5, delay: index * 0.2 }}
                 viewport={{ once: true }}
               >
-                ✅ {feature}
+                {feature}
               </motion.div>
             ))}
             <button className="btn btn-primary">Book Now</button>

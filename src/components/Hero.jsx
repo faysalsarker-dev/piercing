@@ -10,11 +10,10 @@ const Hero = () => {
   }}>
   <div className="hero-overlay "></div>
   <div className="hero-content text-neutral-content text-center">
-    <div className="max-w-md">
-      <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
+    <div className="max-w-lg">
+      <h1 className="mb-5 text-5xl font-bold">Welcome to Piercing Södermalm</h1>
       <p className="mb-5">
-        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-        quasi. In deleniti eaque aut repudiandae et a id nisi.
+      your specialist in piercing and ear piercing in Stockholm. We offer safe, professional and hygienic treatments for both adults, children and babies. Our piercer is certified and has a background as a nurse, which ensures the highest safety and quality.
       </p>
       <button className="btn btn-primary">Get Started</button>
     </div>
