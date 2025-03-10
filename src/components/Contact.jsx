@@ -19,19 +19,19 @@ const Contact = () => {
           {/* Phone */}
           <div className="flex items-center gap-3 mb-3">
             <FaPhoneAlt className="text-primary text-xl" />
-            <span className="text-lg text-gray-700">+1 (234) 567-890</span>
+            <a tel="08-6415057"><span className="text-lg text-gray-700">08-6415057</span></a>
           </div>
 
           {/* Email */}
           <div className="flex items-center gap-3 mb-3">
             <FaEnvelope className="text-primary text-xl" />
-            <span className="text-lg text-gray-700">info@piercingstudio.com</span>
+            <span className="text-lg text-gray-700">piercingsodermalm@gmail.com</span>
           </div>
 
           {/* Address */}
           <div className="flex items-center gap-3 mb-3">
             <FaMapMarkerAlt className="text-primary text-xl" />
-            <span className="text-lg text-gray-700">123 Piercing St, New York, NY</span>
+            <span className="text-lg text-gray-700">Piercing Södermalm, Åsögatan.128, 11624 Stockholm, Sweden</span>
           </div>
 
           {/* Social Links */}

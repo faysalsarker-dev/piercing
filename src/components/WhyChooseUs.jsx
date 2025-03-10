@@ -5,32 +5,32 @@ import Images from "../assets/whychooseus.jpg";
 
 const WhyChooseUs = () => {
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-6 py-16">
       {/* Heading */}
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="text-3xl font-bold text-center text-primary mb-8"
+        className="text-4xl font-extrabold text-center text-primary mb-10"
       >
         Why choose Piercing Södermalm?
       </motion.h2>
 
-      {/* Content */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+      {/* Content Section */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* Image Section */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="overflow-hidden rounded-lg shadow-lg"
+          className="overflow-hidden rounded-xl shadow-lg"
         >
           <img
             src={Images}
             alt="Why Choose Us"
-            className="w-full h-80 object-cover transition-transform duration-300 hover:scale-105"
+            className="w-full h-80 object-cover transition-transform duration-500 hover:scale-105 hover:shadow-xl"
           />
         </motion.div>
 
@@ -38,36 +38,28 @@ const WhyChooseUs = () => {
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <p className="text-gray-600 text-lg leading-relaxed mb-4">
-            Experience top-tier services with our expert professionals,
-            state-of-the-art facilities, and exceptional customer care. Your
-            satisfaction is our priority.
-          </p>
-
           {/* Feature List */}
-          <div className="space-y-3">
+          <div className="space-y-4">
             {[
-              "⭐ Experience and security – Certified piercer with a medical background.",
-              "⭐ Sterile tools and jewelry – We follow strict hygiene procedures to minimize the risk of infections.",
-              "⭐ For all ages – We pierce both adults and children and offer gentle ear piercing for babies.",
-              "⭐ Central location in Stockholm – Easily accessible piercing studio on Södermalm.",
-             
+              "Experience and security – Certified piercer with a medical background.",
+              "Sterile tools and jewelry – We follow strict hygiene procedures to minimize the risk of infections.",
+              "For all ages – We pierce both adults and children and offer gentle ear piercing for babies.",
+              "Central location in Stockholm – Easily accessible piercing studio on Södermalm.",
             ].map((feature, index) => (
               <motion.div
                 key={index}
-                className="flex items-center gap-3 text-gray-700 text-lg"
+                className="flex items-start gap-3 text-gray-800 text-lg"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
+                transition={{ duration: 0.5, delay: index * 0.15, ease: "easeOut" }}
                 viewport={{ once: true }}
               >
-                {feature}
+               ⭐ {feature}
               </motion.div>
             ))}
-            <button className="btn btn-primary">Book Now</button>
           </div>
         </motion.div>
       </div>

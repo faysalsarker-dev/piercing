@@ -1,58 +1,65 @@
-import React from 'react';
-import { Link } from 'react-router';
 
 
-const Card = ({services}) => {
-    const { title, description, price, discount, rating, features,image , original_price} = services || {};
-    console.log(services);
-    return (
-       <Link to={`/services/${services.id}`}>
-            <div>
-              <div className="card bg-base-100  shadow-md rounded-lg overflow-hidden border border-gray-200">
-      <figure className="h-56 overflow-hidden relative">
-        <img
-          src={image}
-          alt="Professional Piercing Service"
-          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-        />
-        {/* Discount Badge */}
-        <div className="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 text-xs font-bold rounded">{discount}</div>
-      </figure>
-      <div className="card-body p-5">
-        <h2 className="card-title text-lg font-semibold text-gray-800">
-          {title}
-        </h2>
-        
-        {/* Ratings */}
-        <div className="flex items-center gap-1 text-yellow-500 text-sm">
-          ⭐⭐⭐⭐⭐ <span className="text-gray-500">(4.8)</span>
-        </div>
-    
-        <p className="text-gray-600 text-sm mt-2">
-         {description}
-        </p>
-    
-        {/* Service Features */}
-        <div className="flex flex-wrap gap-2 mt-3 text-xs text-gray-700">
-            {
-                features?.map((feature, index) => (
-                    <span key={index} className="badge badge-outline">{feature}</span>
-                ))
-            }
+import React from "react";
+import { motion } from "framer-motion";
+
+const Card = ({img}) => {
+  return (
+    <div className="flex flex-col md:flex-row items-center gap-12 bg-base-100 shadow-2xl">
+      {/* Image Section */}
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        viewport={{ once: true }}
+        className="relative w-full md:w-1/2"
+      >
+        <div className="relative rounded-2xl overflow-hidden shadow-lg">
+          <img
+            src={img}
+            alt="Ear Piercing"
+            className="w-full h-[350px] object-cover transition-transform duration-500 hover:scale-105"
+          />
          
         </div>
-    
-        {/* Price & Button */}
-        <div className="flex items-center justify-between mt-4">
-          <span className="text-lg font-semibold text-primary">${price} <span className="text-gray-500 text-sm line-through">${original_price}</span></span>
-          <button className="btn btn-primary">Book Now</button>
+      </motion.div>
+
+      {/* Content Section */}
+      <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+        viewport={{ once: true }}
+        className="w-full md:w-1/2 p-8 rounded-2xl shadow-lg text-center md:text-left"
+      >
+        <h2 className="text-4xl font-bold text-primary mb-4">
+          Ear Piercing
+        </h2>
+        <p className="text-lg leading-relaxed mb-6">
+          Lobe, Helix, Daith, Tragus, Conch, Flat, Rook, Industrial, 
+          Transverse, Orbital, and other variants available.
+        </p>
+
+        {/* Pricing */}
+        <div className="flex flex-col space-y-4">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-gradient-to-r from-red-500 to-orange-500 text-white px-6 py-3 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl"
+          >
+            300 kr incl. Titanium jewelry. Order 600 kr
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white px-6 py-3 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl"
+          >
+            Industrial 450 kr incl. Titanium jewelry. Ord. 900
+          </motion.button>
         </div>
-      </div>
+      </motion.div>
     </div>
-    
-            </div>
-       </Link>
-    );
+  );
 };
 
 export default Card;

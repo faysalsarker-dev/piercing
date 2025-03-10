@@ -3,20 +3,20 @@ import { FaQuestionCircle } from "react-icons/fa";
 
 const Faq = () => {
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="py-12">
       {/* Section Heading */}
       <h2 className="text-3xl font-bold text-center text-primary mb-8 flex justify-center items-center gap-2">
          Frequently Asked Questions
       </h2>
 
       {/* Grid Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+      <div className="flex flex-col md:flex-row gap-10 items-center">
         {/* Image Section */}
         <div className="overflow-hidden rounded-lg shadow-lg">
           <img
             src="https://faysalsarker-dev.github.io/3agt/Images/11.png"
             alt="FAQ"
-            className="w-full h-80 object-cover rounded-lg"
+            className="w-full  object-cover rounded-lg"
           />
         </div>
 
