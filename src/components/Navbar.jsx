@@ -4,8 +4,8 @@ import { NavLink } from "react-router";
 const Navbar = () => {
   const navItems = [
     { name: "Home", path: "/" },
-    { name: "Services", path: "/services" },
-    { name: "Contact", path: "/contact" },
+    { name: "Services", path: "#" },
+    { name: "Contact", path: "#" },
   ];
 
   return (
