@@ -4,6 +4,7 @@ import Root from "../root/Root";
 import Home from "../pages/home/Home";
 
 import OnlineBooking from "../pages/onlineBooking/OnlineBooking";
+import AboutUs from "../pages/about/AboutUs";
 
 
 
@@ -21,7 +22,11 @@ const router = createBrowserRouter([
       {
         path:'online-booking',
         element:<OnlineBooking/>
-      }
+      },
+      {
+        path:'aboutus',
+        element:<AboutUs/>
+      },
    
     ]
   },

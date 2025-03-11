@@ -1,10 +1,12 @@
 
-import Card from "./Card";
+import Card from "./cards/Card";
+import Cardthree from "./cards/Cardthree";
 
 
-import ear from "../assets/ear.jpg";
-import nose from "../assets/nose.jpg";
-import nevel from "../assets/nevel.jpg";
+
+
+
+import Cardtwo from "./cards/Cardtwo";
 
 const Services = () => {
 
@@ -19,35 +21,16 @@ const Services = () => {
        
     //   });
 
-  const fakeData =[
-    {
-      id:1,
-      title:'Ear Piercing',
-      img:ear
-    },
-    {
-      id:2,
-      title:'Nose Piercing',
-      img:nose
-    },
-    {
-      id:3,
-      title:'Nose Piercing',
-      img:nevel
-    },
-  ]
+
 
 
     return (
         <div className="my-6">
             <h2 className="text-4xl text-center my-6 font-bold">Our Services</h2>
           <div className="grid grid-cols-1 gap-8 mt-4">
-               
-              {
-                fakeData?.map((data,idx) => (
-                  <Card key={idx} data={data} />
-                ))
-              }
+               <Card/>
+            <Cardtwo/>
+            <Cardthree/>
           </div>
          
         </div>

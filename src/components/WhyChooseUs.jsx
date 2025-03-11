@@ -5,7 +5,7 @@ import Images from "../assets/whychooseus.jpg";
 
 const WhyChooseUs = () => {
   return (
-    <div className="container mx-auto px-6 py-16">
+    <div className="my-4">
       {/* Heading */}
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
@@ -42,25 +42,25 @@ const WhyChooseUs = () => {
           viewport={{ once: true }}
         >
           {/* Feature List */}
-          <div className="space-y-4">
+          <ul className="space-y-4 list-disc">
             {[
               "Experience and security – Certified piercer with a medical background.",
               "Sterile tools and jewelry – We follow strict hygiene procedures to minimize the risk of infections.",
               "For all ages – We pierce both adults and children and offer gentle ear piercing for babies.",
               "Central location in Stockholm – Easily accessible piercing studio on Södermalm.",
             ].map((feature, index) => (
-              <motion.div
+              <motion.li
                 key={index}
-                className="flex items-start gap-3 text-gray-800 text-lg"
+                className="flex items-start gap-3  text-gray-800 text-lg"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.15, ease: "easeOut" }}
                 viewport={{ once: true }}
               >
-               ⭐ {feature}
-              </motion.div>
+               {feature}
+              </motion.li>
             ))}
-          </div>
+          </ul>
         </motion.div>
       </div>
     </div>

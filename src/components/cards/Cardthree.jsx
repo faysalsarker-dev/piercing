@@ -3,10 +3,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+import nevel from "../../assets/nevel.jpg";
 
+const Cardthree = () => {
 
-const Card = ({data}) => {
-console.log(data,'data');
   return (
     <div className="flex flex-col md:flex-row items-center gap-4 bg-base-100 shadow-2xl p-4 rounded-lg">
       {/* Image Section */}
@@ -19,7 +19,7 @@ console.log(data,'data');
       >
         <div className="relative rounded-2xl overflow-hidden shadow-lg">
           <img
-            src={data.img}
+            src={nevel}
             alt="Ear Piercing"
             className="w-full h-[350px] object-cover transition-transform duration-500 hover:scale-105"
           />
@@ -36,11 +36,11 @@ console.log(data,'data');
         className="w-full md:w-1/2 p-3 text-center md:text-left"
       >
         <h2 className="text-5xl font-bold text-primary mb-4 pl-2 border-l-2 border-primary">
-         {data.title}
+        
+Navel Piercing
         </h2>
         <p className="text-lg leading-relaxed mb-6">
-          Lobe, Helix, Daith, Tragus, Conch, Flat, Rook, Industrial, 
-          Transverse, Orbital, and other variants available.
+        En navelpiercing är ett elegant och feminint sätt att accentuera din kropp. Hos oss på Piercing Södermalm utför vi säkra och professionella navelpiercingar med sterila verktyg och smycken av titan.
         </p>
 
         {/* Pricing */}
@@ -50,19 +50,13 @@ console.log(data,'data');
             whileTap={{ scale: 0.95 }}
             className="bg-gradient-to-r from-red-500 to-orange-500 text-white px-6 py-3  shadow-lg rounded-lg transition-all duration-300 hover:shadow-xl"
           >
-            300 kr incl. Titanium jewelry. Order 600 kr
+          350 kr ink. Titansmycke, Ord. 700 kr
           </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white px-6 py-3 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl"
-          >
-            Industrial 450 kr incl. Titanium jewelry. Ord. 900
-          </motion.button>
+      
         </div>
       </motion.div>
     </div>
   );
 };
 
-export default Card;
+export default Cardthree;

@@ -2,9 +2,9 @@ import React from 'react';
 import heroImge from "../assets/hero.jpg";
 const Hero = () => {
     return (
-        <div className='max-w-6xl mx-auto my-4 rounded-lg'>
+        <div className='max-w-7xl mx-auto my-4 rounded-lg'>
           <div
-  className="hero min-h-screen my-4 rounded-lg"
+  className="hero lg:h-[80vh] md:h-[40vh] sm:h-[40vh] h-[45vh] my-6 rounded-lg"
   style={{
     backgroundImage: `url(${heroImge})`,
   }}>

@@ -5,9 +5,11 @@ import Footer from "../components/Footer";
 
 const Root = () => {
     return (
-        <div>
+        <div className="overflow-x-hidden overflow-y-auto">
             <Navbar/>
-        <div className=" min-h-screen">  <Outlet/></div>
+        <div className=" min-h-screen px-2">
+            <Outlet/>
+    </div>
             <Footer/>
         </div>
     );

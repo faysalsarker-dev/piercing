@@ -15,7 +15,7 @@ const Home = () => {
   return (
     <div>
   <Hero />
-  <div className="max-w-6xl mx-auto flex flex-col px-2">
+  <div className="max-w-6xl mx-auto flex flex-col ">
     <WhyChooseUs />  {/* Establish trust early */}
     <Services />  {/* Show what you offer */}
     <OnlineBooking />  {/* CTA to convert users */}
