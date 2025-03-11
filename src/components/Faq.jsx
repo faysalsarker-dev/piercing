@@ -6,7 +6,7 @@ const Faq = () => {
     <div className="py-12">
       {/* Section Heading */}
       <h2 className="text-3xl font-bold text-center text-primary mb-8 flex justify-center items-center gap-2">
-         Frequently Asked Questions
+      Vanliga frågor om piercing och öronhåltagning
       </h2>
 
       {/* Grid Layout */}
@@ -24,24 +24,24 @@ const Faq = () => {
         <div className="space-y-4">
           {[
             {
-              question: "Is piercing painful?",
+              question: "Gör det ont att ta hål i öronen eller göra en piercing?",
               answer:
-                "Pain varies depending on the location, but most clients report only slight discomfort that lasts a few seconds.",
+                "Ett skala (1-10 så är det ca.2) med nål är smärtan ännu mindre, men den varierar beroende på område och individ, men vi använder skonsamma metoder för att minimera obehag.",
             },
             {
-              question: "How long does a piercing take to heal?",
+              question: "Hur lång tid tar det för en piercing att läka?",
               answer:
-                "Healing times vary by piercing type, but earlobe piercings heal in about 6-8 weeks, while cartilage piercings take 3-6 months.",
+                "Läkningstiden beror på placeringen. Öronhål tar vanligtvis 4-6 veckor medan broskpiercingar kan ta flera månader.",
             },
             {
-              question: "What aftercare should I follow?",
+              question: "Vilken typ av smycken används vid första piercingen?",
               answer:
-                "Clean your piercing with saline solution twice a day, avoid touching it, and never remove the jewelry before it fully heals.",
+                "Vi använder endast sterila och allergivänliga smycken i titan och silver och guld pläterade pluppar för öronhåltagning. ",
             },
             {
-              question: "Do you use sterile equipment?",
+              question: "Hur sköter jag min nya piercing?",
               answer:
-                "Yes! We use single-use, sterilized needles and high-quality, hypoallergenic jewelry for every client.",
+                "Vi ger dig detaljerade eftervårdsinstruktioner och rekommenderar att du rengör piercingen med en mild saltlösning dagligen.",
             },
           ].map((faq, index) => (
             <div key={index} className="collapse collapse-arrow bg-base-200">

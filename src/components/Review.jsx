@@ -54,7 +54,7 @@ const Review = () => {
     <div className="container mx-auto px-4 py-12">
       {/* Heading */}
       <h2 className="text-3xl font-bold text-center text-primary mb-8">
-        What Our Customers Say 
+      vad våra kunder
       </h2>
 
       {/* Swiper Carousel */}

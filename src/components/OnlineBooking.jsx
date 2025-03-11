@@ -12,14 +12,13 @@ const OnlineBooking = () => {
 
       {/* Content */}
       <div className="relative z-10 text-white text-center max-w-2xl mx-auto">
-        <h2 className="text-4xl font-bold mb-4">Book an Appointment with Us</h2>
+        <h2 className="text-4xl font-bold mb-4">Boka tid hos oss</h2>
         <p className="text-lg mb-6">
-          Do you want to get a new piercing or get your ears pierced in a safe and professional way? 
-          Book your appointment online, call, or drop in.
+        Vill du ta en ny piercing eller få hål i öronen på ett tryggt och professionellt sätt? Boka din tid online, Ring eller är ni på en drop-in.
         </p>
     <Link to={'/online-booking'}>
           <button className="bg-accent hover:bg-accent-dark text-white text-lg font-semibold px-6 py-3 rounded-md shadow-lg transition">
-            Book Now
+          Boka nu
           </button>
     </Link>
       </div>

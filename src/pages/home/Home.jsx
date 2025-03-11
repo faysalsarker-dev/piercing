@@ -7,6 +7,7 @@ import Review from '../../components/Review';
 import Contact from '../../components/Contact';
 import Faq from '../../components/Faq';
 import OnlineBooking from '../../components/OnlineBooking';
+import ShowCases from '../../components/ShowCases';
 
 
 
@@ -14,16 +15,33 @@ import OnlineBooking from '../../components/OnlineBooking';
 const Home = () => {
   return (
     <div>
-  <Hero />
-  <div className="max-w-6xl mx-auto flex flex-col ">
-    <WhyChooseUs />  {/* Establish trust early */}
-    <Services />  {/* Show what you offer */}
-    <OnlineBooking />  {/* CTA to convert users */}
-    <Review />  {/* Build credibility with testimonials */}
-    <Faq />  {/* Answer common concerns */}
-    <Contact />  {/* Final CTA & location details */}
+    {/* Hero Section (First Impression) */}
+    <Hero />  
+  
+    <div className="max-w-6xl mx-auto flex flex-col">
+      {/* Why Choose Us (Trust & Credibility) */}
+      <WhyChooseUs />  
+  
+      {/* Services (Core Offerings) */}
+      <Services />  
+  
+      {/* Showcases (Portfolio/Proof of Work) */}
+      <ShowCases />  
+  
+      {/* Reviews (Customer Testimonials to Build Trust) */}
+      <Review />  
+  
+      {/* Online Booking (Action-Oriented Call-to-Action) */}
+      <OnlineBooking />  
+  
+      {/* FAQ (Common Questions & Concerns) */}
+      <Faq />  
+  
+      {/* Contact (Final Step for Direct Communication) */}
+      <Contact />  
+    </div>
   </div>
-</div>
+  
   );
 };
 

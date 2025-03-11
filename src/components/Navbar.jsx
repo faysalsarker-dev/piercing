@@ -12,7 +12,7 @@ const Navbar = () => {
     <nav className="navbar bg-base-100 shadow-sm md:px-6 px-3">
       {/* Logo Section */}
       <div className="navbar-start">
-        <a className="text-xl font-semibold text-primary">Piercing Södermalm</a>
+        <a className="md:text-xl text-base font-semibold text-primary">Piercing Södermalm</a>
       </div>
 
       {/* Desktop Navigation */}
