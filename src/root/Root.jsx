@@ -1,13 +1,15 @@
 import { Outlet } from "react-router";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import ScrollToTop from "../utility/ScrollToTop";
 
 
 const Root = () => {
     return (
-        <div className="overflow-x-hidden overflow-y-auto">
+        <div className="overflow-x-hidden overflow-y-auto ">
             <Navbar/>
-        <div className=" min-h-screen px-2">
+            <ScrollToTop/>
+        <div className=" min-h-screen ">
             <Outlet/>
     </div>
             <Footer/>

@@ -38,15 +38,28 @@ const services = [
   },
 ];
 
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (idx) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeInOut",
+      delay: idx * 0.2, // Staggered effect
+    },
+  }),
+};
+
 const Services = () => {
   return (
     <div className="my-5">
       {/* Section Heading */}
       <motion.h2
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        initial="hidden"
+        whileInView="visible"
         viewport={{ once: true }}
+        transition={{ duration: 0.7, ease: "easeInOut" }}
         className="text-4xl font-extrabold text-center text-primary mb-12"
       >
         Våra Piercingtjänster
@@ -54,13 +67,14 @@ const Services = () => {
 
       {/* Services Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6">
-        {services.map((service) => (
+        {services.map((service, idx) => (
           <motion.div
             key={service.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: service.id * 0.1, ease: "easeOut" }}
+            custom={idx}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
+            variants={fadeUpVariants}
             className="group bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-3 text-center relative overflow-hidden"
           >
             <div className="relative w-full h-40 flex items-center justify-center overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800">

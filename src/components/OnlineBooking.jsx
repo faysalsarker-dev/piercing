@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router";
 import cover from "../assets/cover.jpg";
+import { ParallaxBanner } from "react-scroll-parallax";
 
 const OnlineBooking = () => {
   return (
-    
+
     <div className="relative bg-cover bg-center py-20 px-6 mx-4 md:mx-0 rounded-lg shadow-lg" 
       style={{ backgroundImage: `url(${cover})` }}>
       {/* Overlay */}
@@ -23,6 +24,7 @@ const OnlineBooking = () => {
     </Link>
       </div>
     </div>
+    
   );
 };
 

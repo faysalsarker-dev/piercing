@@ -1,8 +1,9 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-/* calendar.css */
 
 
 
-  
+.body{
+    font-family: "Luckiest Guy", cursive;
+}

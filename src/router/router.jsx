@@ -5,6 +5,8 @@ import Home from "../pages/home/Home";
 
 import OnlineBooking from "../pages/onlineBooking/OnlineBooking";
 import AboutUs from "../pages/about/AboutUs";
+import ContactUs from '../pages/contactus/ContactUs';
+import ErrorPage from "../pages/error/ErrorPage";
 
 
 
@@ -13,7 +15,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element:<Root/>,
-    ErrorBoundary: () => <h3>Error Page</h3>,
+    ErrorBoundary: () => <ErrorPage/>,
     children: [ 
       {
         index: true,  
@@ -26,6 +28,10 @@ const router = createBrowserRouter([
       {
         path:'aboutus',
         element:<AboutUs/>
+      },
+      {
+        path:'contactus',
+        element:<ContactUs/>
       },
    
     ]

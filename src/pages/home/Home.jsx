@@ -14,7 +14,7 @@ import ShowCases from '../../components/ShowCases';
 
 const Home = () => {
   return (
-    <div>
+    <div className='px-2'>
     {/* Hero Section (First Impression) */}
     <Hero />  
   
