@@ -42,29 +42,35 @@ const WhyChooseUs = () => {
           viewport={{ once: true }}
         >
           <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-          Vad får oss att sticka ut?
+            Vad gör oss unika?
           </h3>
           <p className="text-sm dark:text-white text-gray-700 mb-4">
-          På Piercing Södermalm prioriterar vi säkerhet, professionalism och en exceptionell kundupplevelse. Här är anledningen till att vi är det bästa valet för din nästa piercing:
+            På Piercing Södermalm sätter vi säkerhet, brofessionalism och en
+            förstklassig kundupplevelse främsta rummet. Här är varför vi är det
+            självklara valet för din nästa piercing:
           </p>
 
           {/* Feature List */}
           <ul className="list-disc list-inside space-y-2 text-sm dark:text-white text-gray-800">
             {[
-              "Erfarenhet och trygghet – Certifierad piercare med medicinsk bakgrund.",
-              "Sterila verktyg och smycken – Vi följer strikta hygienrutiner för att minimera risk för infektioner.",
-              "För alla åldrar – Vi piercar både vuxna och barn samt erbjuder skonsam öronhåltagning för bebisar.",
-              "Centralt läge i Stockholm – Lättillgänglig piercingstudio på Södermalm.",
+              "Erfarenhet och trygghet - Vår certifierade piercare har en medicinsk bakgrund för din säkerhet.",
+              "Högsta hygienstandard - Vi använder sterila verktyg och smycken samt följer strikta hygienrutiner för att minimera infektionsrisken.",
+              "För alla åldrar - Vi erbjuder piercing för både vuxna och barn samt skonsam öronhåltagning för bebisar.",
+              "Centralt läge - Vår studio ligger på Södermalm i Stockholm, lättillgänglig för dig.",
             ].map((feature, index) => (
               <motion.li
                 key={index}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.15, ease: "easeOut" }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.15,
+                  ease: "easeOut",
+                }}
                 viewport={{ once: true }}
                 className="pl-1"
               >
-                {feature}
+                <span className="font-bold">{feature.split(" - ")[0]} - </span>{feature.split(" - ")[1]}
               </motion.li>
             ))}
           </ul>

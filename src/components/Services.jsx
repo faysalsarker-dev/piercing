@@ -10,14 +10,14 @@ import aftercare from "../assets/advice.png";
 const services = [
   {
     id: 1,
-    title: "Öronpiercing",
+    title: "Piercingar med nål",
     description:
       "Skonsamma och professionella öronpiercingar – från klassiska hål till unika kombinationer.",
     image: earPiercing,
   },
   {
     id: 2,
-    title: "Kroppspiercing",
+    title: "Öronhåltagning med pistol",
     description:
       "Vi erbjuder expertis inom alla typer av kroppspiercing, inklusive navel, tunga, septum och mer.",
     image: bodyPiercing,
@@ -31,7 +31,7 @@ const services = [
   },
   {
     id: 4,
-    title: "Eftervård & Rådgivning",
+    title: "After care & Rådgivning",
     description:
       "Professionell eftervård och skötselråd för att säkerställa snabb och säker läkning.",
     image: aftercare,

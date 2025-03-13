@@ -11,17 +11,23 @@ const Hero = () => {
   }}>
   <div className="hero-overlay rounded-lg h-full"></div>
   <div className=" h-full  text-center flex flex-col justify-center items-center text-white px-4">
-          <h2 className="text-3xl md:text-5xl font-bold leading-tight ">
+          <h2 className="text-xl md:text-5xl font-bold leading-tight ">
             Välkommen till
           </h2>
-          <h1 className=" text-5xl md:text-7xl font-bold  bg-gradient-to-r from-orange-500 to-yellow-500 bg-clip-text text-transparent">
+          <h1 className="mb-1 text-5xl md:text-7xl font-bold  bg-gradient-to-r from-orange-500 to-yellow-500 bg-clip-text text-transparent">
   Piercing Södermalm
 </h1>
 
           <p className="text-sm md:text-base lg:text-lg max-w-2xl mx-auto mb-6">
-            Din specialist på piercing och öronhåltagning i Stockholm. Vi erbjuder trygga,
-            professionella och hygieniska behandlingar för både vuxna, barn och bebisar.
-            Vår piercare är certifierad och har en bakgrund som sjuksköterska,
+          
+
+
+            Din specialist på piercing och öronhåltagning i Stockholm.
+Vi erbjuder trygga, professionella och hygieniska
+<b> piercingar</b> för både vuxna, barn och bebisar. Vår picicare ar certifierad och har en bakgrund som sjuksköterska,
+
+
+
           </p>
 
           {/* Buttons */}
