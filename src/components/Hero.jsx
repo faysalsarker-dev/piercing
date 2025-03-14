@@ -7,9 +7,12 @@ const Hero = () => {
           <div
   className="hero relative lg:h-[80vh] md:h-[40vh] sm:h-[40vh] h-[45vh] my-4 rounded-lg max-w-7xl mx-auto  "
   style={{
-    backgroundImage: `url(${heroImge})`,
-  }}>
-  <div className="hero-overlay rounded-lg h-full"></div>
+    backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url(${heroImge})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}
+  >
+  <div className=" hero-overlay rounded-lg h-full"></div>
   <div className=" h-full  text-center flex flex-col justify-center items-center text-white px-4">
           <h2 className="text-xl md:text-5xl font-bold leading-tight ">
             Välkommen till
@@ -24,7 +27,7 @@ const Hero = () => {
 
             Din specialist på piercing och öronhåltagning i Stockholm.
 Vi erbjuder trygga, professionella och hygieniska
-<span className='text-secondary font-extrabold'> piercingar</span> för både vuxna, barn och bebisar. Vår picicare ar certifierad och har en bakgrund som sjuksköterska,
+<span className='font-extrabold'> piercingar</span> för både vuxna, barn och bebisar. Vår piercare ar certifierad och har en bakgrund som sjuksköterska,
 
 
 

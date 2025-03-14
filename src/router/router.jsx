@@ -7,6 +7,9 @@ import OnlineBooking from "../pages/onlineBooking/OnlineBooking";
 import AboutUs from "../pages/about/AboutUs";
 import ContactUs from '../pages/contactus/ContactUs';
 import ErrorPage from "../pages/error/ErrorPage";
+import Dashboard from "../root/Dashboard";
+import Overview from "../admin/Overview";
+import Login from "../admin/Login";
 
 
 
@@ -36,6 +39,22 @@ const router = createBrowserRouter([
    
     ]
   },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    errorElement: <ErrorPage />, 
+    children: [
+      {
+        index: true, 
+        element: <Overview />,
+      },
+      
+    ],
+  },
+  {
+    path:'/login',
+    element:<Login/>
+  }
 ]);
 
 
