@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import Images from "../assets/whychooseus.jpg";
+import Images from "../assets/whyChoose.jpg";
 
 const WhyChooseUs = () => {
   return (

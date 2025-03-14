@@ -1,11 +1,11 @@
 import React from 'react';
-import heroImge from "../assets/hero.jpg";
+import heroImge from "../assets/heroCover.jpg";
 import { Link } from 'react-router';
 const Hero = () => {
     return (
         <>
           <div
-  className="hero relative lg:h-[80vh] md:h-[40vh] sm:h-[40vh] h-[45vh] my-8 rounded-lg max-w-7xl mx-auto  "
+  className="hero relative lg:h-[80vh] md:h-[40vh] sm:h-[40vh] h-[45vh] my-4 rounded-lg max-w-7xl mx-auto  "
   style={{
     backgroundImage: `url(${heroImge})`,
   }}>
@@ -24,7 +24,7 @@ const Hero = () => {
 
             Din specialist på piercing och öronhåltagning i Stockholm.
 Vi erbjuder trygga, professionella och hygieniska
-<b> piercingar</b> för både vuxna, barn och bebisar. Vår picicare ar certifierad och har en bakgrund som sjuksköterska,
+<span className='text-secondary font-extrabold'> piercingar</span> för både vuxna, barn och bebisar. Vår picicare ar certifierad och har en bakgrund som sjuksköterska,
 
 
 

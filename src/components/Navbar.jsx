@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
   const navItems = [
@@ -14,8 +14,10 @@ const Navbar = () => {
     <nav className="navbar bg-base-100 shadow-sm md:px-6 px-3">
       {/* Logo Section */}
       <div className="navbar-start">
-        <a className="md:text-xl text-base font-semibold text-primary">Piercing Södermalm</a>
-      </div>
+<Link to="/" >
+          <span className="md:text-xl text-base font-semibold text-primary">Piercing Södermalm</span>
+  
+</Link >      </div>
 
       {/* Desktop Navigation */}
       <div className="navbar-end hidden lg:flex">

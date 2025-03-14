@@ -3,16 +3,15 @@ import { useForm } from "react-hook-form";
 import { DayPicker } from "react-day-picker";
 import { format } from "date-fns";
 import classNames from "react-day-picker/style.module.css";
-
-const fakeBookedSlots = {
-  "2025-03-11": ["10:00", "12:00", "15:00"],
-  "2025-03-12": ["11:00", "14:00"],
-};
+import { useMutation, useQuery } from "@tanstack/react-query";
+import useAxios from "./../../Hooks/useAxios";
+import toast from "react-hot-toast";
+import Loading from "../../components/loading/Loading";
 
 const generateTimeSlots = (date) => {
   if (!date) return [];
   const day = date.getDay();
-  if (day === 0) return []; 
+  if (day === 0) return []; // No booking on Sundays
 
   const isSaturday = day === 6;
   const startTime = 10;
@@ -21,25 +20,58 @@ const generateTimeSlots = (date) => {
 };
 
 const OnlineBooking = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [selectedTime, setSelectedTime] = useState("");
+  const [bookingDate, setBookingDate] = useState(new Date());
+  const [slot, setSlot] = useState("");
   const { register, handleSubmit, reset } = useForm();
-
+  const axiosCommon = useAxios();
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const formattedDate = selectedDate ? format(selectedDate, "yyyy-MM-dd") : "";
-  const bookedSlots = fakeBookedSlots[formattedDate] || [];
-  const availableSlots = selectedDate ? generateTimeSlots(selectedDate) : [];
+  const formattedDate = format(bookingDate, "yyyy-MM-dd");
 
+  // Fetch available slots
+  const { data: slotdetails = [], isLoading, isError, refetch } = useQuery({
+    queryKey: ["slotsdetails", formattedDate],
+    queryFn: async ({ signal }) => {
+      const { data } = await axiosCommon.get(`/online-booking/check-slots/${formattedDate}`,{ signal });
+      return data;
+    },
+    enabled: !!formattedDate,
+  });
+
+  // Extract booked slots
+  const bookedSlots = slotdetails?.map((b) => b.slot) || [];
+  const availableSlots = generateTimeSlots(bookingDate);
+
+  // Handle date selection
   const handleDateSelect = (date) => {
-    setSelectedDate(date);
-    setSelectedTime(""); 
-    reset(); 
+    if (!date || format(date, "yyyy-MM-dd") === formattedDate) return;
+    setBookingDate(date);
+    setSlot("");
+    refetch();
+    reset();
   };
 
-  const onSubmit = (data) => {
-    console.log("Booking Confirmed:", { ...data, selectedDate, selectedTime });
+  // Mutation for booking
+  const { mutateAsync, isPending } = useMutation({
+    mutationFn: async (info) => {
+      const { data } = await axiosCommon.post(`/online-booking`, info);
+      return data;
+    },
+    onSuccess: () => {
+      toast.success("Booking confirmed successfully.");
+      reset();
+      refetch();
+    },
+    onError: () => {
+      toast.error("An error occurred while submitting your request.");
+    },
+  });
+
+  // Handle form submission
+  const onSubmit = async (data) => {
+    if (!slot) return toast.error("Please select a time slot.");
+    await mutateAsync({ ...data, bookingDate: formattedDate, slot });
   };
 
   return (
@@ -49,7 +81,7 @@ const OnlineBooking = () => {
         <h3 className="text-xl font-semibold mb-4">Select Your Booking Date</h3>
         <DayPicker
           mode="single"
-          selected={selectedDate}
+          selected={bookingDate}
           onSelect={handleDateSelect}
           classNames={{
             ...classNames,
@@ -64,34 +96,41 @@ const OnlineBooking = () => {
       {/* Time Slot Selection & Booking Form */}
       <div className="w-full md:w-1/2 bg-white p-3 rounded-xl shadow-lg">
         <h2 className="text-xl font-semibold text-center mb-4">
-          Select a Time Slot ({format(selectedDate, "PP")})
+          Select a Time Slot ({formattedDate})
         </h2>
-        <div className="grid grid-cols-3 gap-3 mb-5">
-          {availableSlots.length > 0 ? (
-            availableSlots.map((slot) => {
-              const isBooked = bookedSlots.includes(slot);
-              return (
-                <button
-                  key={slot}
-                  onClick={() => !isBooked && setSelectedTime(slot)}
-                  className={`btn btn-sm relative p-2 rounded-lg text-center transition-all duration-300 
-                    ${isBooked ? "bg-gray-300 text-gray-500 cursor-not-allowed" : "hover:bg-blue-600 hover:text-white border border-gray-300"} 
-                    ${selectedTime === slot ? "bg-blue-500 text-white" : "bg-white"}`}
-                  disabled={isBooked}
-                >
-                  {slot}
-                  {isBooked && (
-                        <span className="block text-xs absolute inset-0 rotate-12 text-slate-400">
-                          (Already Booked)
-                        </span>
-                      )}
-                </button>
-              );
-            })
-          ) : (
-            <p className="col-span-3 text-red-500 text-center">No available slots</p>
-          )}
-        </div>
+
+        {isLoading ? (
+         <Loading/>
+        ) : isError ? (
+          <p className="text-center text-red-500">Failed to load slots</p>
+        ) : (
+          <div className="grid grid-cols-3 gap-3 mb-5">
+            {availableSlots.length > 0 ? (
+              availableSlots.map((time) => {
+                const isBooked = bookedSlots.includes(time);
+                return (
+                  <button
+                    key={time}
+                    onClick={() => !isBooked && setSlot(time)}
+                    className={`btn btn-sm relative p-2 rounded-lg text-center transition-all duration-300 
+                      ${isBooked ? "bg-gray-300 text-gray-500 cursor-not-allowed" : "hover:bg-blue-800 hover:text-white border border-gray-300"} 
+                      ${slot === time ? "bg-blue-500 text-white" : "bg-white"}`}
+                    disabled={isBooked}
+                  >
+                    {time}
+                    {isBooked && (
+                      <span className="block text-xs absolute inset-0 rotate-12 text-violet-400">
+                        (Booked)
+                      </span>
+                    )}
+                  </button>
+                );
+              })
+            ) : (
+              <p className="col-span-3 text-red-500 text-center">No available slots</p>
+            )}
+          </div>
+        )}
 
         {/* Booking Form */}
         <div className="bg-gray-50 p-4 rounded-lg shadow-md">
@@ -115,8 +154,13 @@ const OnlineBooking = () => {
               placeholder="Your Phone"
               className="input input-bordered w-full p-2 border rounded-lg"
             />
-            <button type="submit" className="btn btn-primary w-full py-2 rounded-lg">
-              Confirm Booking
+
+            <button
+              disabled={!slot || isLoading || isPending}
+              type="submit"
+              className="btn btn-primary w-full py-2 rounded-lg"
+            >
+              {isPending ? "Booking..." : "Confirm Booking"}
             </button>
           </form>
         </div>

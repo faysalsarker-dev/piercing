@@ -5,7 +5,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import { Autoplay, Pagination } from "swiper/modules";
-
+import Rating from 'react-rating';
+import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 const testimonials = [
   {
     id: 1,
@@ -13,7 +14,7 @@ const testimonials = [
     image: "https://randomuser.me/api/portraits/women/45.jpg",
     review:
       "Absolutely love my new piercing! The staff was professional, and the hygiene standards were top-notch. Highly recommended!",
-    rating: 5,
+    rating: 3.4,
   },
   {
     id: 2,
@@ -21,7 +22,7 @@ const testimonials = [
     image: "https://randomuser.me/api/portraits/men/40.jpg",
     review:
       "Great experience! The piercing process was smooth and painless. The studio has a great vibe, and the jewelry selection is amazing.",
-    rating: 5,
+    rating: 2.3,
   },
   {
     id: 3,
@@ -29,7 +30,7 @@ const testimonials = [
     image: "https://randomuser.me/api/portraits/women/35.jpg",
     review:
       "Best piercing studio ever! The team made me feel comfortable, and I love how my piercing turned out. Definitely coming back for more!",
-    rating: 5,
+    rating: 4.5,
   },
   {
     id: 4,
@@ -37,7 +38,7 @@ const testimonials = [
     image: "https://randomuser.me/api/portraits/men/55.jpg",
     review:
       "The piercing process was quick, and the staff was super friendly. Love my new piercing!",
-    rating: 5,
+    rating: 4.9,
   },
   {
     id: 5,
@@ -45,7 +46,7 @@ const testimonials = [
     image: "https://randomuser.me/api/portraits/women/50.jpg",
     review:
       "Hands down the best piercing studio! Super clean and hygienic, and the staff is fantastic.",
-    rating: 5,
+    rating: 4.7,
   },
 ];
 
@@ -87,16 +88,14 @@ const Review = () => {
                   className="w-16 h-16 rounded-full border-2 border-primary"
                 />
                 <h3 className="font-semibold text-lg mt-2">{testimonial.name}</h3>
-                <div className="rating rating-md">
-                  {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <input
-                      key={i}
-                      type="radio"
-                      className="mask mask-star-2 bg-yellow-500"
-                      checked
-                      readOnly
-                    />
-                  ))}
+                <div className=" text-yellow-400">
+                <Rating
+        initialRating={testimonial.rating} // Initial rating  
+        emptySymbol={<FaRegStar className="text-yellow-400" />} // Empty star
+        fullSymbol={<FaStar className="text-yellow-400" />} // Full star
+        fractions={2} 
+        readonly={true} 
+      />
                 </div>
               </div>
             </div>

@@ -59,10 +59,10 @@ const ContactUs = () => {
       <div className="w-full md:w-1/3 bg-white p-6 rounded-lg shadow-md flex flex-col justify-center">
         <h2 className="text-2xl font-bold text-primary mb-4">Get in Touch</h2>
         <p className="text-gray-700 mb-2">
-          📧 Email: <a href="mailto:info@example.com" className="text-primary">info@example.com</a>
+          📧 Email: <a href="mailto:piercingsodermalm@gmail.com" className="text-primary">piercingsodermalm@gmail.com</a>
         </p>
-        <p className="text-gray-700 mb-2">📞 Phone: +123 456 7890</p>
-        <p className="text-gray-700">📍 Address: 123 Street, City, Country</p>
+        <p className="text-gray-700 mb-2">📞 Phone: <a href="tel:08-6415057">08-6415057</a></p>
+        <p className="text-gray-700">📍 Address: Piercing Södermalm, Åsögatan.128, 11624 Stockholm, Sweden</p>
       </div>
     </div>
   );

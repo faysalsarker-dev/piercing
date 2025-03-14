@@ -2,7 +2,7 @@ import axios from "axios";
 
 const axiosCommon = axios.create({
  
-   baseURL: "../../public/data.json",
+   baseURL: "http://localhost:5000",
  
 });
 
