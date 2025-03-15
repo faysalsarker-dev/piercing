@@ -10,6 +10,8 @@ import ErrorPage from "../pages/error/ErrorPage";
 import Dashboard from "../root/Dashboard";
 import Overview from "../admin/Overview";
 import Login from "../admin/Login";
+import Post from "../admin/Post";
+import PostEdit from "../admin/components/PostEdit";
 
 
 
@@ -47,6 +49,14 @@ const router = createBrowserRouter([
       {
         index: true, 
         element: <Overview />,
+      },
+      {
+        path:'all-posts', 
+        element: <Post />,
+      },
+      {
+        path:'all-posts/:id', 
+        element: <PostEdit />,
       },
       
     ],

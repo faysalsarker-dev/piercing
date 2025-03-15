@@ -20,12 +20,12 @@ const Dashboard = () => {
 
     const NavItams=[
       {
-        path:'/dashboard',
+        path:'',
         icon:<FaHome/>,
         title:'Dashboard'
       },
       {
-        path:'/posts',
+        path:'all-posts',
         icon:<BsFileEarmarkPost />,
         title:'All Posts'
       },
@@ -76,13 +76,13 @@ const Dashboard = () => {
       </div>
     
       {/* Main content */}
-      <div className="p-6"><Outlet/></div>
+      <div className="p-3 overflow-x-hidden overflow-y-scroll"><Outlet/></div>
     </div>
     
     {/* Sidebar */}
     <div className="drawer-side">
       <label htmlFor="my-drawer" className="drawer-overlay"></label>
-      <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4 shadow-lg">
+      <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4 shadow-lg space-y-1">
         {/* Website Name / Logo */}
         <li className="mb-4 text-lg font-bold text-start text-primary">
           🔹 Admin Panel
@@ -94,6 +94,7 @@ const Dashboard = () => {
     return(
       <li key={index}>
       <NavLink
+        exact='true'
         to={item.path}
         className={({ isActive }) =>
           `flex items-center gap-2 p-2 rounded-lg ${isActive ? "bg-primary text-white" : "hover:bg-base-300"}`
