@@ -1,35 +1,38 @@
 
+import { useQuery } from "@tanstack/react-query";
+import useAxios from "../Hooks/useAxios";
 import Card from "./cards/Card";
-import Cardthree from "./cards/Cardthree";
+import Loading from './loading/Loading';
 
-
-
-
-
-import Cardtwo from "./cards/Cardtwo";
 
 const ShowCases = () => {
+  const axiosCommon = useAxios()
 
-    // const { data } = useQuery({
-    //     queryKey: ["product"],
-    //     queryFn: async () => {
-    //       const response = await axios.get("/data.json"
-    //       );
-          
-    //       return response.data;
-    //     },
-       
-    //   });
+  const { data,isLoading } = useQuery({
+      queryKey: ["post"],
+      queryFn: async () => {
+        const response = await axiosCommon.get("/post"
+        );
+        
+        return response.data;
+      },
+      staleTime: 1200000, 
+      cacheTime: 3600000, 
+    });
 
-
+if (isLoading) return <div className="flex justify-center items-center"><Loading/></div>
 
 
     return (
         <div className="my-6">
           <div className="grid grid-cols-1 gap-8 mt-4">
-               <Card/>
-            <Cardthree/>
-            <Cardtwo/>
+            {
+              data?.map((item)=>(
+<Card key={item._id} item={item} />
+              ))
+            }
+               
+           
           </div>
          
         </div>

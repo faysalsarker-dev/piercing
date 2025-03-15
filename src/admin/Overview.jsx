@@ -1,97 +1,105 @@
-import React from 'react';
+import React, { useState } from 'react';
+import useAxios from '../Hooks/useAxios';
+import { useQuery } from '@tanstack/react-query';
+import { format } from 'date-fns';
+import { Link } from 'react-router';  
 
 const Overview = () => {
-    return (
-        <div className='container mx-auto'>
-            <div className="stats shadow w-full">
-  <div className="stat">
-    <div className="stat-figure text-secondary">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        className="inline-block h-8 w-8 stroke-current">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-      </svg>
-    </div>
-    <div className="stat-title">Downloads</div>
-    <div className="stat-value">31K</div>
-    <div className="stat-desc">Jan 1st - Feb 1st</div>
-  </div>
+  const axiosCommon = useAxios();
 
-  <div className="stat">
-    <div className="stat-figure text-secondary">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        className="inline-block h-8 w-8 stroke-current">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
-      </svg>
-    </div>
-    <div className="stat-title">New Users</div>
-    <div className="stat-value">4,200</div>
-    <div className="stat-desc">↗︎ 400 (22%)</div>
-  </div>
+  // State to store the formatted date
+  const [bookingDate] = useState(new Date());
+  const formattedDate = format(bookingDate, "yyyy-MM-dd");
 
-  
-</div>
-<div>
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['todays'],
+    queryFn: async () => {
+      const { data } = await axiosCommon.get(`/online-booking/todays-book/${formattedDate}`);
+      return data;
+    },
+  });
 
+  console.log(formattedDate);
 
-<div className="overflow-x-auto mt-10">
-    <h3 className='text-2xl font-bold my-3'>Today's Booking</h3>
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error fetching data!</div>;
+  }
+
+  console.log(data);
+
+  return (
+    <div className="container mx-auto">
+      <div className="stats shadow w-full">
+        <div className="stat">
+          <div className="stat-figure text-secondary">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              className="inline-block h-8 w-8 stroke-current"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+          </div>
+          <div className="stat-title">Today's Booking</div>
+          <div className="stat-value">{data.length}</div> {/* Corrected from 'lenght' */}
+          <div className="stat-desc">{formattedDate}</div> {/* Using the formatted date from state */}
+        </div>
+      </div>
+
+      <div className="overflow-x-auto mt-10">
+  <h3 className="text-2xl font-bold my-3">Today's Booking</h3>
   <table className="table">
-    {/* head */}
+    {/* Table head */}
     <thead>
       <tr>
         <th></th>
         <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
+        <th>Contact</th>
+        <th>Time</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
-      {/* row 1 */}
-      <tr>
-        <th>1</th>
-        <td>Cy Ganderton</td>
-        <td>Quality Control Specialist</td>
-        <td>Blue</td>
-      </tr>
-      {/* row 2 */}
-      <tr className="hover:bg-base-300">
-        <th>2</th>
-        <td>Hart Hagerty</td>
-        <td>Desktop Support Technician</td>
-        <td>Purple</td>
-      </tr>
-      {/* row 3 */}
-      <tr>
-        <th>3</th>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-      </tr>
+      {data.map((item, idx) => (
+        <tr key={idx}>
+          <td>{idx + 1}</td>
+          <td>{item.name}</td>
+          <td>
+            {item.email}
+            <br />
+            <span className="badge badge-ghost badge-sm">{item?.phone}</span>
+          </td>
+          <td>{item.slot}</td>
+          <td>
+            {/* Button to view booking details */}
+     <Link to={`/booking/${item._id}`}>
+              <button
+               
+                className="btn btn-primary"
+              >
+                View
+              </button>
+     </Link>
+          </td>
+        </tr>
+      ))}
     </tbody>
   </table>
 </div>
 
 
-
-</div>
-
-
-        </div>
-    );
+    </div>
+  );
 };
 
 export default Overview;

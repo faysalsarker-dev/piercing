@@ -1,6 +1,4 @@
-import m from "../assets/ear.jpg";
-import m1 from "../assets/nose.jpg";
-import m2 from "../assets/nevel.jpg";
+
 import useAxios from './../Hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from "react-router";
@@ -21,7 +19,7 @@ const axiosCommon = useAxios()
        
       });
 
-console.log(data);
+
 
 
   return (

@@ -30,7 +30,7 @@ const Dashboard = () => {
         title:'All Posts'
       },
       {
-        path:'/Booking',
+        path:'all-booings',
         icon:<TbBrandBooking />,
         title:'Booking'
       },
@@ -94,7 +94,7 @@ const Dashboard = () => {
     return(
       <li key={index}>
       <NavLink
-        exact='true'
+        end 
         to={item.path}
         className={({ isActive }) =>
           `flex items-center gap-2 p-2 rounded-lg ${isActive ? "bg-primary text-white" : "hover:bg-base-300"}`

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 import ear from "../../assets/ear.jpg";
 
-const Card = () => {
+const Card = ({item}) => {
 
   return (
     <div className="flex flex-col md:flex-row items-center gap-4 bg-base-100 shadow-2xl p-4 rounded-lg">
@@ -19,7 +19,7 @@ const Card = () => {
       >
         <div className="relative rounded-2xl overflow-hidden shadow-lg">
           <img
-            src={ear}
+            src={`${import.meta.env.VITE_API}/images/${item?.image}`}
             alt="Ear Piercing"
             className="w-full h-[350px] object-cover transition-transform duration-500 hover:scale-105"
           />
@@ -36,29 +36,51 @@ const Card = () => {
         className="w-full md:w-1/2 p-3 text-center md:text-left"
       >
         <h2 className="text-5xl font-bold text-primary mb-4 pl-2 border-l-2 border-primary">
-        Öron Piercing
+       {item?.title}
         </h2>
         <p className="text-lg leading-relaxed mb-6">
-        Lobe, Helix, Daith, Tragus, Conch, Flat, Rook,  Industrial, Transverse, Orbital och möjligt för andra varianter.
+        {item?.description}
         </p>
 
         {/* Pricing */}
         <div className="flex flex-col space-y-4">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-gradient-to-r from-red-500 to-orange-500 text-white px-6 py-3  shadow-lg rounded-lg transition-all duration-300 hover:shadow-xl"
-          >
-           300 kr ink.Titansmycke, Ord. 600 kr
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white px-6 py-3 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl"
-          >
-            Industrial 450 kr incl. Titanium jewelry. Ord. 900
-          </motion.button>
-        </div>
+  {item?.btn1Text && (
+    <a
+      className="w-full"
+      href={item?.btn1Link}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={item?.btn1Text}
+    >
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="w-full bg-gradient-to-r from-red-500 to-orange-500 text-white px-1 py-3 shadow-lg rounded-lg transition-all duration-300 hover:shadow-xl"
+      >
+        {item?.btn1Text}
+      </motion.button>
+    </a>
+  )}
+
+  {item?.btn2Text && (
+    <a
+      className="w-full"
+      href={item?.btn2Link}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={item?.btn2Text}
+    >
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="w-full bg-gradient-to-r from-orange-500 to-yellow-500 text-white px-1 py-3 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl"
+      >
+        {item?.btn2Text}
+      </motion.button>
+    </a>
+  )}
+</div>
+
       </motion.div>
     </div>
   );
