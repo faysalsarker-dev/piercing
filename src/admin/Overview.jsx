@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import useAxios from '../Hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
-import { Link } from 'react-router';  
+import PopUp from './PopUp';
+ 
 
 const Overview = () => {
   const axiosCommon = useAxios();
@@ -57,46 +58,49 @@ const Overview = () => {
       </div>
 
       <div className="overflow-x-auto mt-10">
-  <h3 className="text-2xl font-bold my-3">Today's Booking</h3>
-  <table className="table">
-    {/* Table head */}
-    <thead>
-      <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Contact</th>
-        <th>Time</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      {data.map((item, idx) => (
-        <tr key={idx}>
-          <td>{idx + 1}</td>
-          <td>{item.name}</td>
-          <td>
-            {item.email}
-            <br />
-            <span className="badge badge-ghost badge-sm">{item?.phone}</span>
-          </td>
-          <td>{item.slot}</td>
-          <td>
-            {/* Button to view booking details */}
-     <Link to={`/booking/${item._id}`}>
-              <button
-               
-                className="btn btn-primary"
-              >
-                View
-              </button>
-     </Link>
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
-
+      <table className="table w-full border border-gray-200">
+        {/* Table Head */}
+        <thead className="bg-gray-100">
+          <tr className="text-left text-gray-700">
+            <th className="p-3">#</th>
+            <th className="p-3">Name</th>
+            <th className="p-3">Contact</th>
+            <th className="p-3">Booking Date & Time</th>
+            <th className="p-3">Action</th>
+          </tr>
+        </thead>
+        {/* Table Body */}
+        <tbody>
+          {data.map((item, idx) => (
+            <tr key={idx} className="border-t hover:bg-gray-50">
+              <td className="p-3">{idx + 1}</td>
+              <td className="p-3">{item.name}</td>
+              <td className="p-3 flex flex-col">
+                <a 
+                 
+                >
+                  {item.email}
+                </a>
+                <a 
+                 
+                >
+                  {item.phone}
+                </a>
+              </td>
+              <td className="p-3">
+                <span className="block font-semibold">
+                  {format(new Date(item.bookingDate), "EEEE, MMMM d, yyyy")}
+                </span>
+                <span className="text-gray-600">{item.slot}</span>
+              </td>
+              <td className="p-3">
+                <PopUp item={item} />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
 
     </div>
   );

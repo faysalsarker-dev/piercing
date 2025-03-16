@@ -3,18 +3,22 @@
 
 
 
-@font-face {
-  font-family: 'ImpactCustom';
-  src: url('/public/Impacted.ttf') format('truetype');
-}
+
 
 body {
-  font-family: 'ImpactCustom', sans-serif;
-  letter-spacing: 1px;
+  font-family: "Anton", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  letter-spacing: 0.5px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-smooth: always;
+  text-rendering: optimizeLegibility;
   
 }
 
 
+
+.roboto {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}

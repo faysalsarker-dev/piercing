@@ -18,7 +18,7 @@ const Hero = () => {
             Välkommen till
           </h2>
           <h1 className="mb-1 text-5xl md:text-7xl font-bold  bg-gradient-to-r from-orange-500 to-yellow-500 bg-clip-text text-transparent">
-  Piercing Södermalm
+          Piercing Södermalm
 </h1>
 
           <p className="text-sm md:text-base lg:text-lg max-w-2xl mx-auto mb-6">
@@ -27,7 +27,7 @@ const Hero = () => {
 
             Din specialist på piercing och öronhåltagning i Stockholm.
 Vi erbjuder trygga, professionella och hygieniska
-<span className='font-extrabold'> piercingar</span> för både vuxna, barn och bebisar. Vår piercare ar certifierad och har en bakgrund som sjuksköterska,
+<span className='font-extrabold tracking-widest'> piercingar</span> för både vuxna, barn och bebisar. Vår piercare ar certifierad och har en bakgrund som sjuksköterska,
 
 
 
@@ -36,12 +36,12 @@ Vi erbjuder trygga, professionella och hygieniska
           {/* Buttons */}
           <div className="flex flex-wrap justify-center gap-4">
   <Link to="/online-booking">
-    <button className="px-6 py-2 bg-primary text-white font-semibold rounded-full shadow-lg border border-primary transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-transparent hover:text-primary">
+    <button className="px-6 py-2 bg-primary roboto text-white  font-semibold rounded-full shadow-lg border border-primary transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-transparent hover:text-primary">
     Boka nu
     </button>
   </Link>
   <Link to="/contactus">
-    <button className="px-6 py-2 bg-secondary text-white font-semibold rounded-full shadow-lg border border-secondary transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-transparent hover:text-secondary">
+    <button className="px-6 py-2 bg-secondary text-white roboto  font-semibold rounded-full shadow-lg border border-secondary transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-transparent hover:text-secondary">
     kontakta
     </button>
   </Link>

@@ -37,7 +37,7 @@ const Dashboard = () => {
     ]
   return (
   
-<div className="max-w-7xlxl mx-auto overflow-x-hidden overflow-y-auto">
+<div className="max-w-7xlxl mx-auto overflow-x-hidden overflow-y-auto roboto">
     
     <div className="drawer lg:drawer-open">
     <ScrollToTop />
