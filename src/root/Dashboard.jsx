@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router"; // ✅ Fix import
 import ScrollToTop from "../utility/ScrollToTop";
 import  { useState } from "react";
 import { NavLink } from "react-router";
-import { FaHome,  FaSignOutAlt, FaBars } from "react-icons/fa";
+import { FaHome,  FaSignOutAlt, FaBars, FaComment } from "react-icons/fa";
 import { BsFileEarmarkPost } from "react-icons/bs";
 import { TbBrandBooking } from "react-icons/tb";
 
@@ -33,6 +33,11 @@ const Dashboard = () => {
         path:'all-booings',
         icon:<TbBrandBooking />,
         title:'Booking'
+      },
+      {
+        path:'review',
+        icon:<FaComment />,
+        title:'Clients Review'
       },
     ]
   return (

@@ -13,6 +13,7 @@ import Login from "../admin/Login";
 import Post from "../admin/Post";
 import PostEdit from "../admin/components/PostEdit";
 import AllBookings from "../admin/AllBookings";
+import ClientReview from './../admin/ClientReview';
 
 
 
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path:'all-booings', 
         element: <AllBookings />,
+      },
+      {
+        path:'review', 
+        element: <ClientReview />,
       },
       
     ],

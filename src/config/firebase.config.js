@@ -1,19 +1,18 @@
-// // Import the functions you need from the SDKs you need
-// import { initializeApp } from "firebase/app";
-// // TODO: Add SDKs for Firebase products that you want to use
-// // https://firebase.google.com/docs/web/setup#available-libraries
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-// // Your web app's Firebase configuration
-// const firebaseConfig = {
-//   apiKey: "AIzaSyAHRJOG36nxNz4bvbOH_Mww0Pc2e8rlciQ",
-//   authDomain: "store-296f7.firebaseapp.com",
-//   projectId: "store-296f7",
-//   storageBucket: "store-296f7.firebasestorage.app",
-//   messagingSenderId: "595424445719",
-//   appId: "1:595424445719:web:4eb7eea6089f3f5ce9e352"
-// };
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: import.meta.env.VITE_API_KEY,
+    authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_APP_ID
+  };
 
-// // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-
-// export default app
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+export default app

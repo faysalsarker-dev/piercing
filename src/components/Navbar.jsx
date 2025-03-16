@@ -1,23 +1,24 @@
 import React from "react";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink } from "react-router"; // Fix the import to 'react-router-dom'
+import Logo from "../assets/logo.png";
 
 const Navbar = () => {
   const navItems = [
     { name: "Home", path: "/" },
-    { name: "book", path: "/online-booking" },
-    { name: "Contact", path: "/contactus" },
-    { name: "About", path: "/aboutus" },
-    { name: "Privecy policy", path: "/privacy" },
+    { name: "Online Booking", path: "/online-booking" },  // Updated name
+    { name: "Contact Us", path: "/contact-us" },         // Updated name
+    { name: "About Us", path: "/about-us" },             // Updated name
+    { name: "Privacy Policy", path: "/privacy-policy" }, // Updated name
   ];
 
   return (
-    <nav className="navbar bg-base-100 shadow-sm md:px-6 px-3">
+    <nav className="navbar bg-base-100 shadow-sm md:px-6 px-3 ">
       {/* Logo Section */}
       <div className="navbar-start">
-<Link to="/" >
-          <span className="md:text-xl text-base font-semibold text-primary">Piercing Södermalm</span>
-  
-</Link >      </div>
+        <Link to="/">
+          <img className=" w-full h-14" src={Logo} alt="Logo" />
+        </Link>
+      </div>
 
       {/* Desktop Navigation */}
       <div className="navbar-end hidden lg:flex">

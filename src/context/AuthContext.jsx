@@ -1,94 +1,108 @@
-/* eslint-disable react/prop-types */
+
+import { useEffect, useState } from "react";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+  sendPasswordResetEmail,
+
+} from "firebase/auth";
 
 
-// import { useEffect, useState } from "react";
-// import {
-//   getAuth,
-//   createUserWithEmailAndPassword,
-//   signInWithEmailAndPassword,
-//   onAuthStateChanged,
-//   signOut,
-//   sendPasswordResetEmail,
-
-// } from "firebase/auth";
-
-// import app from "../config/firebase.config";
 import { ContextData } from "./../utility/ContextData";
+import app from './../config/firebase.config';
 
-// const auth = getAuth(app);
+const auth = getAuth(app);
 
 const AuthContext = ({ children }) => {
 
-//   const [user, setUser] = useState(null);
-//   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
 
-//   // Create user with email and password
-//   const createUser = async (email, password) => {
-//     setLoading(true);
-//     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-//     return userCredential;
-//   };
+  // Sign user in with email and password
+  const signIn = async (email, password) => {
+    try {
+      setLoading(true);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      return userCredential;
+    } catch (error) {
+      console.error("Error signing in:", error);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
 
-//   // Sign user in with email and password
-//   const signIn = async (email, password) => {
-//     setLoading(true);
-//     const userCredential = await signInWithEmailAndPassword(auth, email, password);
-//     return userCredential;
-//   };
-//   const reset = async (email) => {
-//     setLoading(true);
-//     const userCredential = await sendPasswordResetEmail(auth, email);;
-//     return userCredential;
-//   };
+  const resetPassword = async (email) => {
+    try {
+      setLoading(true);
+      const reset = await sendPasswordResetEmail(auth, email);
+      return reset;
+    } catch (error) {
+      console.error("Error signing in:", error);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+  const reset = async (email) => {
+    setLoading(true);
+    const userCredential = await sendPasswordResetEmail(auth, email);;
+    return userCredential;
+  };
 
 
 
-//   // Log out
-//   const logOut = () => {
-//     setLoading(true);
-//     return signOut(auth);
-//   };
+  // Log out
+  const logOut = () => {
+    setLoading(true);
+    return signOut(auth);
+  };
 
 
 
 
 
  
-//   useEffect(() => {
-//     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-//       setUser(currentUser);
-//       if (currentUser) {
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      setUser(currentUser);
+      if (currentUser) {
        
 
-//         setLoading(false);
-//       } else {
-//         setLoading(false);
-//         setUser(null);
+        setLoading(false);
+      } else {
+        setLoading(false);
+        setUser(null);
       
-//       }
-//     });
-//     return () => {
-//       unsubscribe();
-//     };
-//   }, [user]);
-
-//   const contextData = {
-//     createUser,
-//     signIn,
-//     user,
-//     logOut,
-//     loading,
-//     setLoading,
-//     setUser,
-//     reset
-  
-//   };
+      }
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, [user]);
 
   const contextData = {
- user: null,
+  
+    signIn,
+    user,
+    logOut,
+    loading,
+    setLoading,
+    setUser,
+    reset
   
   };
+
+
 
 
   return (

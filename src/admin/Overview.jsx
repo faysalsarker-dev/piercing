@@ -3,6 +3,7 @@ import useAxios from '../Hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import PopUp from './PopUp';
+import Loading from '../components/loading/Loading';
  
 
 const Overview = () => {
@@ -20,10 +21,10 @@ const Overview = () => {
     },
   });
 
-  console.log(formattedDate);
+
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className='flex justify-center items-center h-screen'><Loading/></div>;
   }
 
   if (error) {
