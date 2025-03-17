@@ -91,7 +91,7 @@ const AuthContext = ({ children }) => {
   }, [user]);
 
   const contextData = {
-  
+    resetPassword,
     signIn,
     user,
     logOut,

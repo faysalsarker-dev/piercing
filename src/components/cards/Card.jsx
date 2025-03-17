@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import ear from "../../assets/ear.jpg";
+
 
 const Card = ({item}) => {
 
@@ -20,7 +20,8 @@ const Card = ({item}) => {
         <div className="relative rounded-2xl overflow-hidden shadow-lg">
           <img
             src={`${import.meta.env.VITE_API}/images/${item?.image}`}
-            alt="Ear Piercing"
+            alt="Piercing"
+            loading="lazy"
             className="w-full h-[350px] object-cover transition-transform duration-500 hover:scale-105"
           />
          

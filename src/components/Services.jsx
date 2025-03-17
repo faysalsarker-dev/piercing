@@ -2,24 +2,24 @@ import React from "react";
 import { motion } from "framer-motion";
 
 // Service Images
-import earPiercing from "../assets/earrings.png";
-import bodyPiercing from "../assets/piercing.png";
+import earPiercing from "../assets/services1.jpeg";
+import bodyPiercing from "../assets/services2.jpeg";
 import jewelry from "../assets/piercings.png";
 import aftercare from "../assets/advice.png";
 
 const services = [
   {
     id: 1,
-    title: "Piercingar med nål",
+    title: "Piercing med nål - Steril och skonsam. ",
     description:
-      "Skonsamma och professionella öronpiercingar – från klassiska hål till unika kombinationer.",
+      " Professionell och skonsam piercing med nål. Upptäck vårt stora utbud av piercing.",
     image: earPiercing,
   },
   {
     id: 2,
-    title: "Öronhåltagning med pistol",
+    title: "Öronhåltagning med pistol – Snabbt och effektivt",
     description:
-      "Vi erbjuder expertis inom alla typer av kroppspiercing, inklusive navel, tunga, septum och mer.",
+      "Vill du ha nya hål i öronen på ett snabbt och smidigt sätt? Med vår moderna håltagningspistol får du ett par vackra örhängen på nolltid!",
     image: bodyPiercing,
   },
   {
@@ -77,11 +77,11 @@ const Services = () => {
             variants={fadeUpVariants}
             className="group bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-3 text-center relative overflow-hidden"
           >
-            <div className="relative w-full h-40 flex items-center justify-center overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800">
+            <div className="relative w-full h-40 flex items-center justify-center overflow-hidden rounded-lg ">
               <img
                 src={service.image}
                 alt={service.title}
-                className="w-24 h-24 object-contain transition-transform duration-500 group-hover:scale-110"
+                className="w-full object-cover h-full transition-transform duration-500 group-hover:scale-110"
               />
             </div>
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-4">

@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router";
 import cover from "../assets/cover.jpg";
-import { ParallaxBanner } from "react-scroll-parallax";
+
 
 const OnlineBooking = () => {
   return (
 
-    <div className="relative bg-cover bg-center py-20 px-6 mx-4 md:mx-0 rounded-lg shadow-lg" 
+    <div className="relative roboto bg-cover bg-center py-20 px-6 mx-4 md:mx-0 rounded-lg shadow-lg" 
       style={{ backgroundImage: `url(${cover})` }}>
       {/* Overlay */}
       <div className="absolute inset-0  hero-overlay rounded-lg"></div>
@@ -18,7 +18,7 @@ const OnlineBooking = () => {
         Vill du ta en ny piercing eller få hål i öronen på ett tryggt och professionellt sätt? Boka din tid online, Ring eller är ni på en drop-in.
         </p>
     <Link to={'/online-booking'}>
-          <button className="bg-accent hover:bg-accent-dark text-white text-lg font-semibold px-6 py-3 rounded-md shadow-lg transition">
+          <button className="bg-accent roboto hover:bg-accent-dark text-white text-lg font-semibold px-6 py-3 rounded-md shadow-lg transition">
           Boka nu
           </button>
     </Link>

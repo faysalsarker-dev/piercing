@@ -14,7 +14,7 @@ const WhyChooseUs = () => {
         viewport={{ once: true }}
         className="text-3xl font-bold text-center text-primary mb-8"
       >
-        Varför välja Piercing Södermalm?
+       Vad gör oss unika?
       </motion.h2>
 
       {/* Content Section */}
@@ -30,6 +30,7 @@ const WhyChooseUs = () => {
           <img
             src={Images}
             alt="Why Choose Us"
+            loading="lazy"
             className="w-full h-72 object-cover transition-transform duration-500 hover:scale-105 hover:shadow-xl"
           />
         </motion.div>
@@ -41,11 +42,9 @@ const WhyChooseUs = () => {
           transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-            Vad gör oss unika?
-          </h3>
+     
           <p className="text-sm dark:text-white text-gray-700 mb-4">
-            På Piercing Södermalm sätter vi säkerhet, brofessionalism och en
+            På Piercing Södermalm sätter vi säkerhet, Professionalism och en
             förstklassig kundupplevelse främsta rummet. Här är varför vi är det
             självklara valet för din nästa piercing:
           </p>

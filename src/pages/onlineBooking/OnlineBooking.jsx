@@ -89,7 +89,7 @@ const OnlineBooking = () => {
             today: "text-black",
           }}
           disabled={(date) => date < today || date.getDay() === 0}
-          className="border-0 p-4 rounded-lg shadow-md"
+          className="border-0 p-4 rounded-lg shadow-md roboto"
         />
       </div>
 
@@ -104,7 +104,7 @@ const OnlineBooking = () => {
         ) : isError ? (
           <p className="text-center text-red-500">Failed to load slots</p>
         ) : (
-          <div className="grid grid-cols-3 gap-3 mb-5">
+          <div className="grid grid-cols-3 gap-3 mb-5 roboto ">
             {availableSlots.length > 0 ? (
               availableSlots.map((time) => {
                 const isBooked = bookedSlots.includes(time);
@@ -112,7 +112,7 @@ const OnlineBooking = () => {
                   <button
                     key={time}
                     onClick={() => !isBooked && setSlot(time)}
-                    className={`btn btn-sm relative p-2 rounded-lg text-center transition-all duration-300 
+                    className={` btn btn-sm relative p-2 rounded-lg text-center transition-all duration-300 
                       ${isBooked ? "bg-gray-300 text-gray-500 cursor-not-allowed" : "hover:bg-blue-800 hover:text-white border border-gray-300"} 
                       ${slot === time ? "bg-blue-500 text-white" : "bg-white"}`}
                     disabled={isBooked}
@@ -158,13 +158,13 @@ const OnlineBooking = () => {
             <button
               disabled={!slot || isLoading || isPending}
               type="submit"
-              className="btn btn-primary w-full py-2 rounded-lg"
+              className="btn btn-primary w-full py-2 rounded-lg roboto "
             >
               {isPending ? "Booking..." : "Confirm Booking"}
             </button>
           </form>
         </div>
-      </div>
+      </div> 
     </div>
   );
 };

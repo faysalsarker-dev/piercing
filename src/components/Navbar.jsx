@@ -1,14 +1,14 @@
 import React from "react";
 import { Link, NavLink } from "react-router"; // Fix the import to 'react-router-dom'
-import Logo from "../assets/logo.png";
+import Logo from "/logo.png";
 
 const Navbar = () => {
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Online Booking", path: "/online-booking" },  // Updated name
-    { name: "Contact Us", path: "/contact-us" },         // Updated name
-    { name: "About Us", path: "/about-us" },             // Updated name
-    { name: "Privacy Policy", path: "/privacy-policy" }, // Updated name
+    { name: "Contact Us", path: "/contactus" },         // Updated name
+    // { name: "About Us", path: "/aboutus" },             // Updated name
+    // { name: "Privacy Policy", path: "/privacy-policy" }, // Updated name
   ];
 
   return (

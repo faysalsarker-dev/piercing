@@ -14,6 +14,8 @@ import Post from "../admin/Post";
 import PostEdit from "../admin/components/PostEdit";
 import AllBookings from "../admin/AllBookings";
 import ClientReview from './../admin/ClientReview';
+import PasswordReset from "../admin/PasswordReset";
+import Protector from './Protector';
 
 
 
@@ -44,8 +46,8 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: "/dashboard",
-    element: <Dashboard />,
+    path: "/admin",
+    element:<Protector> <Dashboard /></Protector>,
     errorElement: <ErrorPage />, 
     children: [
       {
@@ -74,6 +76,10 @@ const router = createBrowserRouter([
   {
     path:'/login',
     element:<Login/>
+  },
+  {
+    path:'/reset-password',
+    element:<PasswordReset/>
   }
 ]);
 

@@ -7,50 +7,30 @@ import "swiper/css/autoplay";
 import { Autoplay, Pagination } from "swiper/modules";
 import Rating from 'react-rating';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
-const testimonials = [
-  {
-    id: 1,
-    name: "Emily Rose",
-    image: "https://randomuser.me/api/portraits/women/45.jpg",
-    review:
-      "Absolutely love my new piercing! The staff was professional, and the hygiene standards were top-notch. Highly recommended!",
-    rating: 3.4,
-  },
-  {
-    id: 2,
-    name: "James Carter",
-    image: "https://randomuser.me/api/portraits/men/40.jpg",
-    review:
-      "Great experience! The piercing process was smooth and painless. The studio has a great vibe, and the jewelry selection is amazing.",
-    rating: 2.3,
-  },
-  {
-    id: 3,
-    name: "Sophia Martinez",
-    image: "https://randomuser.me/api/portraits/women/35.jpg",
-    review:
-      "Best piercing studio ever! The team made me feel comfortable, and I love how my piercing turned out. Definitely coming back for more!",
-    rating: 4.5,
-  },
-  {
-    id: 4,
-    name: "Daniel Brown",
-    image: "https://randomuser.me/api/portraits/men/55.jpg",
-    review:
-      "The piercing process was quick, and the staff was super friendly. Love my new piercing!",
-    rating: 4.9,
-  },
-  {
-    id: 5,
-    name: "Sophia Lee",
-    image: "https://randomuser.me/api/portraits/women/50.jpg",
-    review:
-      "Hands down the best piercing studio! Super clean and hygienic, and the staff is fantastic.",
-    rating: 4.7,
-  },
-];
+import { useQuery } from "@tanstack/react-query";
+import useAxios from "../Hooks/useAxios";
+import Loading from "./loading/Loading";
+
 
 const Review = () => {
+const axiosCommon = useAxios()
+  const { data :testimonials, isLoading, error } = useQuery({
+    queryKey: ['review'],
+    queryFn: async () => {
+      const { data } = await axiosCommon.get(`/review`);
+      return data;
+    },
+    staleTime: 1200000, 
+    cacheTime: 3600000, 
+  });
+
+  if (isLoading) {
+    return <div className='flex justify-center items-center h-screen'><Loading/></div>;
+  }
+
+  if (error) {
+    return <div>Error fetching data!</div>;
+  }
   return (
     <div className="container mx-auto px-4 py-12">
       {/* Heading */}
@@ -71,7 +51,7 @@ const Review = () => {
         modules={[Autoplay, Pagination]}
         className="w-full"
       >
-        {testimonials.map((testimonial) => (
+        {testimonials?.map((testimonial) => (
           <SwiperSlide key={testimonial.id}>
             <div className="card bg-base-100 shadow-xl p-6 mx-3">
               <div className="flex flex-col items-center">
@@ -85,6 +65,7 @@ const Review = () => {
                 <img
                   src={testimonial.image}
                   alt={testimonial.name}
+                  loading="lazy"
                   className="w-16 h-16 rounded-full border-2 border-primary"
                 />
                 <h3 className="font-semibold text-lg mt-2">{testimonial.name}</h3>

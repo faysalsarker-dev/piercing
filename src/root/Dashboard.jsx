@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, Outlet } from "react-router"; // ✅ Fix import
 import ScrollToTop from "../utility/ScrollToTop";
 import  { useState } from "react";
@@ -6,10 +6,12 @@ import { NavLink } from "react-router";
 import { FaHome,  FaSignOutAlt, FaBars, FaComment } from "react-icons/fa";
 import { BsFileEarmarkPost } from "react-icons/bs";
 import { TbBrandBooking } from "react-icons/tb";
+import { ContextData } from "../utility/ContextData";
+import Swal from "sweetalert2";
 
 
 const Dashboard = () => {
-
+ const { user ,logOut}= useContext(ContextData);
     const [isOpen, setIsOpen] = useState(false);
 
     const closeDrawer = () => {
@@ -40,6 +42,33 @@ const Dashboard = () => {
         title:'Clients Review'
       },
     ]
+
+    const handleLogout = () => {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You will be logged out!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Yes, Logout!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          logOut()
+            .then(() => {
+              Swal.fire("Logged Out", "You have been successfully logged out!", "success");
+            })
+            .catch((error) => {
+              Swal.fire("Error", error.message, "error");
+            });
+        }
+      });
+    };
+    
+
+
+
+
   return (
   
 <div className="max-w-7xlxl mx-auto overflow-x-hidden overflow-y-auto roboto">
@@ -57,7 +86,7 @@ const Dashboard = () => {
         {/* User Profile */}
         <div className="flex items-center gap-4">
           <div className="text-right hidden md:block">
-            <p className="text-sm font-semibold">John Doe</p>
+            <p className="text-sm font-semibold">{user?.email}</p>
             <p className="text-xs text-gray-500">Admin</p>
           </div>
           <div className="dropdown dropdown-end">
@@ -65,15 +94,15 @@ const Dashboard = () => {
         <div className="w-10 rounded-full">
           <img
             alt="Tailwind CSS Navbar component"
-            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+            src="https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg" />
         </div>
       </div>
       <ul
         tabIndex={0}
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-   
+        <li><Link to='/reset-password'>Password Reset</Link></li>
         <li><Link to='/login'>Login</Link></li>
-        <li><a>Logout</a></li>
+        <li onClick={handleLogout}><a>Logout</a></li>
       </ul>
     </div>
   
@@ -119,7 +148,7 @@ const Dashboard = () => {
         <li className="mt-auto">
           <a
             className="flex items-center gap-2 text-red-500 hover:bg-red-200 p-2 rounded-lg"
-            onClick={closeDrawer}
+            onClick={handleLogout}
           >
             <FaSignOutAlt /> Logout
           </a>

@@ -1,18 +1,42 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form"; 
 import { IoMdEye,IoMdEyeOff } from "react-icons/io";
+import { ContextData } from './../utility/ContextData';
+import { Link, useNavigate } from "react-router";
+import toast from "react-hot-toast";
+import { FaArrowLeft } from "react-icons/fa";
+
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm(); 
   const [showPassword, setShowPassword] = useState(false);
+  const { signIn ,user}= useContext(ContextData);
 
-  const onSubmit = (data) => {
-    console.log(data);
-   
+  const navigate = useNavigate()
+
+
+  const onSubmit = async (data) => {
+    try {
+      await signIn(data.email, data.password);
+      navigate(location.state?.from || "/admin");
+    } catch  {
+     toast.error('login failds')
+    }
   };
 
+
+
+
+
+  useEffect(() => {
+    if (user) {
+      navigate(location.state?.from || "/admin");
+    }
+  }, [user, location.state, navigate]);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-2">
+    <div className="min-h-screen relative flex items-center justify-center bg-gray-100 px-2">
+       <FaArrowLeft onClick={()=>navigate(-1)} className="absolute top-3 left-3 bg-gray-300 w-14 p-3 rounded-lg h-14 shadow-2xl" />
       <div className="card w-full max-w-md shadow-xl bg-white p-6 rounded-lg">
         <h2 className="text-2xl font-bold text-center text-gray-700">Login</h2>
 
@@ -68,9 +92,9 @@ const Login = () => {
 
           {/* Forgot Password & Sign Up */}
           <div className="mt-3 text-center">
-            <a href="#" className="text-sm text-gray-500 hover:underline">
+            <Link href="/reset-password" className="text-sm text-gray-500 hover:underline">
               Forgot password?
-            </a>
+            </Link>
           </div>
         </form>
       </div>

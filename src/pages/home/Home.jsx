@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Hero from '../../components/Hero';
 import Services from '../../components/Services';
 import WhyChooseUs from '../../components/WhyChooseUs';
@@ -8,6 +8,7 @@ import Contact from '../../components/Contact';
 import Faq from '../../components/Faq';
 import OnlineBooking from '../../components/OnlineBooking';
 import ShowCases from '../../components/ShowCases';
+import Chat from '../../components/Chat';
 
 
 
@@ -39,6 +40,7 @@ const Home = () => {
   
       {/* Contact (Final Step for Direct Communication) */}
       <Contact />  
+      <Chat/>
     </div>
   </div>
   
