@@ -10,9 +10,9 @@ import aftercare from "../assets/advice.png";
 const services = [
   {
     id: 1,
-    title: "Piercing med nål - Steril och skonsam. ",
+    title: "Piercing med nål - Steril och skonsam",
     description:
-      " Professionell och skonsam piercing med nål. Upptäck vårt stora utbud av piercing.",
+      " Professionell och skonsam piercing med nål. Upptäck vårt stora utbud av piercing!",
     image: earPiercing,
   },
   {
@@ -22,18 +22,18 @@ const services = [
       "Vill du ha nya hål i öronen på ett snabbt och smidigt sätt? Med vår moderna håltagningspistol får du ett par vackra örhängen på nolltid!",
     image: bodyPiercing,
   },
-  {
-    id: 3,
-    title: "Smyckesbyte",
-    description:
-      "Högkvalitativa smycken i titan och guld – vi hjälper dig att byta smycken säkert och smidigt.",
-    image: jewelry,
-  },
+  // {
+  //   id: 3,
+  //   title: "Smyckesbyte",
+  //   description:
+  //     "Högkvalitativa smycken i titan och guld – vi hjälper dig att byta smycken säkert och smidigt.",
+  //   image: jewelry,
+  // },
   {
     id: 4,
     title: "After care & Rådgivning",
     description:
-      "Professionell eftervård och skötselråd för att säkerställa snabb och säker läkning.",
+      "will provide you later on BTW I need a fifth section for silver earrings. Stort utbud av äkta 925 silver örhängen Upptäck våra stilfulla och allergivänliga 925 silverörhängen! Hög kvalitet, tidlös design och perfekta för alla tillfällen.",
     image: aftercare,
   },
 ];
@@ -66,7 +66,7 @@ const Services = () => {
       </motion.h2>
 
       {/* Services Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 md:gap-6 gap-2">
         {services.map((service, idx) => (
           <motion.div
             key={service.id}

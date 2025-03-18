@@ -82,6 +82,7 @@ const OnlineBooking = () => {
         <DayPicker
           mode="single"
           selected={bookingDate}
+          animate={true}
           onSelect={handleDateSelect}
           classNames={{
             ...classNames,
@@ -96,7 +97,7 @@ const OnlineBooking = () => {
       {/* Time Slot Selection & Booking Form */}
       <div className="w-full md:w-1/2 bg-white p-3 rounded-xl shadow-lg">
         <h2 className="text-xl font-semibold text-center mb-4">
-          Select a Time Slot ({formattedDate})
+          Select a Time Slot ({format(new Date(formattedDate), 'EEEE, MMMM d, yyyy')   })
         </h2>
 
         {isLoading ? (

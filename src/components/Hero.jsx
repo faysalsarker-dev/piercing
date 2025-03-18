@@ -27,7 +27,7 @@ const Hero = () => {
 
             Din specialist på piercing och öronhåltagning i Stockholm.
 Vi erbjuder trygga, professionella och hygieniska
-<span className='font-extrabold tracking-widest'> piercingar</span> för både vuxna, barn och bebisar. Vår piercare ar certifierad och har en bakgrund som sjuksköterska,
+<span className='font-extrabold'> piercingar</span> för både vuxna, barn och bebisar. Vår piercare ar certifierad och har en bakgrund som sjuksköterska,
 
 
 
