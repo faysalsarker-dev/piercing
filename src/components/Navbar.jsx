@@ -1,34 +1,35 @@
 import React from "react";
-import { Link, NavLink } from "react-router"; // Fix the import to 'react-router-dom'
+import { Link, NavLink } from "react-router"; // Fixed import
 import Logo from "/logo.png";
 
 const Navbar = () => {
   const navItems = [
-    { name: "Home", path: "/" },
-    { name: "Online Booking", path: "/online-booking" },  // Updated name
-    { name: "Contact Us", path: "/contactus" },         // Updated name
-    // { name: "About Us", path: "/aboutus" },             // Updated name
-    // { name: "Privacy Policy", path: "/privacy-policy" }, // Updated name
+    { name: "Hem", path: "/" },
+    { name: "Piercing Öronhåltagning", path: "/Piercing-Oronhåltagning" },
+    { name: "After Care", path: "/after-care" },
+    { name: "Silversmycken", path: "/Silversmycken" },
+    { name: "Boka online", path: "/online-booking" },
+    { name: "Kontakta oss", path: "/contactus" },
   ];
 
   return (
-    <nav className="navbar bg-base-100 shadow-sm md:px-6 px-3 ">
-      {/* Logo Section */}
-      <div className="navbar-start">
+    <nav className="navbar bg-base-100 shadow-sm md:px-6 px-3 flex justify-between items-center">
+      {/* Logo Section - Reduced width */}
+      <div className="navbar-start w-32"> 
         <Link to="/">
-          <img className=" w-full h-14" src={Logo} alt="Logo" />
+          <img className="w-28 h-12 object-contain" src={Logo} alt="Logo" />
         </Link>
       </div>
 
       {/* Desktop Navigation */}
-      <div className="navbar-end hidden lg:flex">
-        <ul className="menu menu-horizontal space-x-4">
+      <div className="navbar-end flex-grow hidden lg:flex justify-end overflow-hidden">
+        <ul className="menu menu-horizontal gap-x-2 whitespace-nowrap">
           {navItems.map((item, index) => (
             <li key={index}>
               <NavLink
                 to={item.path}
                 className={({ isActive }) =>
-                  `px-4 py-2 rounded-md transition-colors font-medium ${
+                  `px-2 py-2 text-xl rounded-md transition-colors font-medium ${
                     isActive
                       ? "text-primary font-semibold"
                       : "text-gray-700 hover:text-primary"
@@ -65,10 +66,10 @@ const Navbar = () => {
                 <NavLink
                   to={item.path}
                   className={({ isActive }) =>
-                    `block px-4 py-2 rounded-md transition-colors font-medium ${
+                    `block px-4 py-2 text-xl rounded-md transition-colors font-medium ${
                       isActive
                         ? "text-primary font-semibold"
-                        : "text-gray-700 hover:text-primary"
+                        : "text-gray-700 hover:text-primary dark:text-white"
                     }`
                   }
                 >

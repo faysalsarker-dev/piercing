@@ -33,7 +33,7 @@ const services = [
     id: 4,
     title: "After care & Rådgivning",
     description:
-      "will provide you later on BTW I need a fifth section for silver earrings. Stort utbud av äkta 925 silver örhängen Upptäck våra stilfulla och allergivänliga 925 silverörhängen! Hög kvalitet, tidlös design och perfekta för alla tillfällen.",
+      "Att följa rätt eftervårds rutin hjälper din piercing att läka snabbt och utan problem.",
     image: aftercare,
   },
 ];

@@ -16,6 +16,7 @@ import AllBookings from "../admin/AllBookings";
 import ClientReview from './../admin/ClientReview';
 import PasswordReset from "../admin/PasswordReset";
 import Protector from './Protector';
+import AfterCare from "../pages/afterCare/AfterCare";
 
 
 
@@ -41,6 +42,19 @@ const router = createBrowserRouter([
       {
         path:'contactus',
         element:<ContactUs/>
+      },
+      {
+        path:'after-care',
+        element:<AfterCare/>
+      },
+      {
+        path:'Piercing-Oronhåltagning',
+        element:<h3>Piercing
+Öronhåltagning</h3>
+      },
+      {
+        path:'after-care',
+        element:<AfterCare/>
       },
    
     ]

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const Chat = () => {
   return (
     <motion.a
-      href="https://www.instagram.com/direct/t/121545575902881" 
+      href="https://www.instagram.com/klippsodermalm" 
       target="_blank"
       rel="noopener noreferrer"
       className="fixed z-50 bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg"
