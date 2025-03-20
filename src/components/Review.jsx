@@ -34,7 +34,7 @@ const axiosCommon = useAxios()
   return (
     <div className="container mx-auto px-4 py-12">
       {/* Heading */}
-      <h2 className="text-3xl font-bold text-center text-primary mb-8">
+      <h2 className="text-3xl font-bold text-center text-blue-600 ch mb-8">
       vad våra kunder
       </h2>
 
@@ -53,10 +53,10 @@ const axiosCommon = useAxios()
       >
         {testimonials?.map((testimonial) => (
           <SwiperSlide key={testimonial.id}>
-            <div className="card bg-base-100 shadow-xl p-6 mx-3">
+            <div className="card card-color shadow-xl p-6 mx-3">
               <div className="flex flex-col items-center">
-                <FaQuoteLeft className="text-primary text-4xl mb-3" />
-                <p className="text-gray-600 text-lg italic text-center">
+                <FaQuoteLeft className="text-blue-600 ch text-4xl mb-3" />
+                <p className="text-gray-500 text-lg italic text-center">
                   "{testimonial.review}"
                 </p>
               </div>

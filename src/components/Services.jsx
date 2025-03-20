@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 // Service Images
 import earPiercing from "../assets/services1.jpeg";
 import bodyPiercing from "../assets/services2.jpeg";
-import jewelry from "../assets/piercings.png";
+
 import aftercare from "../assets/advice.png";
 
 const services = [
@@ -22,15 +22,9 @@ const services = [
       "Vill du ha nya hål i öronen på ett snabbt och smidigt sätt? Med vår moderna håltagningspistol får du ett par vackra örhängen på nolltid!",
     image: bodyPiercing,
   },
-  // {
-  //   id: 3,
-  //   title: "Smyckesbyte",
-  //   description:
-  //     "Högkvalitativa smycken i titan och guld – vi hjälper dig att byta smycken säkert och smidigt.",
-  //   image: jewelry,
-  // },
+
   {
-    id: 4,
+    id: 3,
     title: "After care & Rådgivning",
     description:
       "Att följa rätt eftervårds rutin hjälper din piercing att läka snabbt och utan problem.",
@@ -60,9 +54,9 @@ const Services = () => {
         whileInView="visible"
         viewport={{ once: true }}
         transition={{ duration: 0.7, ease: "easeInOut" }}
-        className="text-4xl font-extrabold text-center text-primary mb-12"
+        className="text-4xl font-extrabold text-center text-blue-600 ch mb-12"
       >
-        Våra Piercingtjänster
+        Det här erbjuder vi!
       </motion.h2>
 
       {/* Services Grid */}
@@ -75,7 +69,7 @@ const Services = () => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUpVariants}
-            className="group bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-3 text-center relative overflow-hidden"
+            className="group card-color rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-3 text-center relative overflow-hidden"
           >
             <div className="relative w-full h-40 flex items-center justify-center overflow-hidden rounded-lg ">
               <img
@@ -84,10 +78,10 @@ const Services = () => {
                 className="w-full object-cover h-full transition-transform duration-500 group-hover:scale-110"
               />
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-4">
+            <h3 className="text-xl font-semibold  mt-4">
               {service.title}
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm">
+            <p className="text-gray-300 mt-2 text-sm">
               {service.description}
             </p>
           </motion.div>

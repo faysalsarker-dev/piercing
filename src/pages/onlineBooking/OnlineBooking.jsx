@@ -7,23 +7,75 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxios from "./../../Hooks/useAxios";
 import toast from "react-hot-toast";
 import Loading from "../../components/loading/Loading";
+import { useSearchParams } from "react-router";
 
 const generateTimeSlots = (date) => {
   if (!date) return [];
+  
   const day = date.getDay();
-  if (day === 0) return []; // No booking on Sundays
+  if (day === 0) return []; 
 
   const isSaturday = day === 6;
   const startTime = 10;
   const endTime = isSaturday ? 15 : 18;
-  return Array.from({ length: endTime - startTime + 1 }, (_, i) => `${startTime + i}:00`);
+
+  let timeSlots = [];
+  
+  
+  for (let hour = startTime; hour <= endTime; hour++) {
+    timeSlots.push(`${hour}:00`);
+    timeSlots.push(`${hour}:30`);
+  }
+
+  return timeSlots;
 };
+
 
 const OnlineBooking = () => {
   const [bookingDate, setBookingDate] = useState(new Date());
   const [slot, setSlot] = useState("");
   const { register, handleSubmit, reset } = useForm();
   const axiosCommon = useAxios();
+  const [searchParams] = useSearchParams();
+  const name = searchParams.get("servicesName");
+  const price = searchParams.get("price");
+  const [selectedService, setSelectedService] = useState(name || "");
+  const [selectedPrice, setSelectedPrice] = useState(price || "");
+
+
+
+
+  const { data:prices } = useQuery({
+      queryKey: ["price"],
+      queryFn: async () => {
+        const response = await axiosCommon.get("/price"
+        );
+        
+        return response.data;
+      },
+      staleTime: 1200000, 
+      cacheTime: 3600000, 
+    });
+
+
+
+
+
+  const handleServiceChange = (e) => {
+    const service = e.target.value;
+    setSelectedService(service);
+  
+    // Find price from the list
+    const foundPrice = prices
+      .flatMap(category => category.items)
+      .find(item => item.name === service)?.price || "";
+  
+    setSelectedPrice(foundPrice);
+  };
+
+
+
+
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -75,9 +127,9 @@ const OnlineBooking = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center gap-8 p-6 bg-gray-100 min-h-screen">
+    <div className="flex flex-col md:flex-row items-center justify-center gap-8 p-3  min-h-screen">
       {/* Date Picker */}
-      <div className="w-full md:w-1/2 flex flex-col items-center bg-white p-3 rounded-xl shadow-lg">
+      <div className="w-full md:w-1/2 flex flex-col items-center  p-3 rounded-xl shadow-lg">
         <h3 className="text-xl font-semibold mb-4">Select Your Booking Date</h3>
         <DayPicker
           mode="single"
@@ -95,7 +147,7 @@ const OnlineBooking = () => {
       </div>
 
       {/* Time Slot Selection & Booking Form */}
-      <div className="w-full md:w-1/2 bg-white p-3 rounded-xl shadow-lg">
+      <div className="w-full md:w-1/2  p-3 rounded-xl shadow-lg">
         <h2 className="text-xl font-semibold text-center mb-4">
           Select a Time Slot ({format(new Date(formattedDate), 'EEEE, MMMM d, yyyy')   })
         </h2>
@@ -114,8 +166,8 @@ const OnlineBooking = () => {
                     key={time}
                     onClick={() => !isBooked && setSlot(time)}
                     className={` btn btn-sm relative p-2 rounded-lg text-center transition-all duration-300 
-                      ${isBooked ? "bg-gray-300 text-gray-500 cursor-not-allowed" : "hover:bg-blue-800 hover:text-white border border-gray-300"} 
-                      ${slot === time ? "bg-blue-500 text-white" : "bg-white"}`}
+                      ${isBooked ? "  cursor-not-allowed border-gray-400" : "hover:bg-blue-800 hover:text-white border border-gray-300"} 
+                      ${slot === time ? "bg-blue-500 text-white" : "card-color text-white"}`}
                     disabled={isBooked}
                   >
                     {time}
@@ -134,37 +186,100 @@ const OnlineBooking = () => {
         )}
 
         {/* Booking Form */}
-        <div className="bg-gray-50 p-4 rounded-lg shadow-md">
-          <h3 className="text-lg font-semibold text-center mb-3">Booking Details</h3>
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
-            <input
-              {...register("name", { required: true })}
-              type="text"
-              placeholder="Your Name"
-              className="input input-bordered w-full p-2 border rounded-lg"
-            />
-            <input
-              {...register("email", { required: true })}
-              type="email"
-              placeholder="Your Email"
-              className="input input-bordered w-full p-2 border rounded-lg"
-            />
-            <input
-              {...register("phone", { required: true })}
-              type="tel"
-              placeholder="Your Phone"
-              className="input input-bordered w-full p-2 border rounded-lg"
-            />
+        <div className="bg-gray-800 p-6 mt-2 rounded-lg shadow-lg  ">
+  <h3 className="text-xl font-semibold text-center mb-4 text-white">Booking Details</h3>
+  <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+    {/* Name Input */}
+    <div>
+      <label className="text-gray-300 text-sm font-medium mb-1 block">Your Name</label>
+      <input
+        {...register("name", { required: true })}
+        type="text"
+        placeholder="Enter your name"
+        className="input input-bordered w-full p-2 border rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-primary"
+      />
+    </div>
 
-            <button
-              disabled={!slot || isLoading || isPending}
-              type="submit"
-              className="btn btn-primary w-full py-2 rounded-lg roboto "
-            >
-              {isPending ? "Booking..." : "Confirm Booking"}
-            </button>
-          </form>
-        </div>
+    {/* Email Input */}
+    <div>
+      <label className="text-gray-300 text-sm font-medium mb-1 block">Your Email</label>
+      <input
+        {...register("email", { required: true })}
+        type="email"
+        placeholder="Enter your email"
+        className="input input-bordered w-full p-2 border rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-primary"
+      />
+    </div>
+
+    {/* Phone Input */}
+    <div>
+      <label className="text-gray-300 text-sm font-medium mb-1 block">Your Phone</label>
+      <input
+        {...register("phone", { required: true })}
+        type="tel"
+        placeholder="Enter your phone number"
+        className="input input-bordered w-full p-2 border rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-primary"
+      />
+    </div>
+
+    {/* Service Selection */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {/* Service Name */}
+      <div>
+        <label className="text-gray-300 text-sm font-medium mb-1 block">Service Name</label>
+        {name ? (
+          <input
+            {...register("servicesName", { required: true })}
+            value={selectedService}
+            readOnly
+            className="input input-bordered w-full bg-gray-600 cursor-not-allowed text-gray-400"
+          />
+        ) : (
+          <select
+            {...register("servicesName", { required: true })}
+            onChange={handleServiceChange}
+            value={selectedService}
+            className="select select-bordered w-full card-color text-white focus:ring-2 focus:ring-primary focus:border-primary"
+          >
+            <option value="" disabled>
+              Select a Service
+            </option>
+            {prices?.map((category) => (
+              <optgroup key={category?.category} label={category?.category} className="font-bold text-gray-400">
+                {category?.items?.map((item) => (
+                  <option key={item.name} value={item.name}>
+                    {item.name}  
+                  </option>
+                ))}
+              </optgroup>
+            ))}
+          </select>
+        )}
+      </div>
+
+      {/* Service Price */}
+      <div>
+        <label className="text-gray-300 text-sm font-medium mb-1 block">Service Price</label>
+        <input
+          {...register("price", { required: true })}
+          value={selectedPrice}
+          readOnly
+          className="input input-bordered w-full bg-gray-600 cursor-not-allowed text-gray-400"
+        />
+      </div>
+    </div>
+
+    {/* Submit Button */}
+    <button
+      disabled={isLoading || isPending}
+      type="submit"
+      className="btn btn-primary text-white w-full py-2 mt-4 rounded-lg transition-all hover:bg-primary/80 focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+    >
+      {isPending ? "Booking..." : "Confirm Booking"}
+    </button>
+  </form>
+</div>
+
       </div> 
     </div>
   );

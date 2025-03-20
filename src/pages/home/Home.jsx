@@ -7,7 +7,6 @@ import Review from '../../components/Review';
 import Contact from '../../components/Contact';
 import Faq from '../../components/Faq';
 import OnlineBooking from '../../components/OnlineBooking';
-import ShowCases from '../../components/ShowCases';
 import Chat from '../../components/Chat';
 
 
@@ -27,7 +26,7 @@ const Home = () => {
       <Services />  
   
       {/* Showcases (Portfolio/Proof of Work) */}
-      <ShowCases />  
+      
   
       {/* Reviews (Customer Testimonials to Build Trust) */}
       <Review />  

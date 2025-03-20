@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 const Card = ({item}) => {
 
   return (
-    <div className="flex flex-col md:flex-row items-center gap-4 bg-base-100 shadow-2xl p-4 rounded-lg">
+    <div className="flex flex-col md:flex-row items-center gap-4  shadow-2xl p-4 rounded-lg">
       {/* Image Section */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
@@ -36,7 +36,7 @@ const Card = ({item}) => {
         viewport={{ once: true }}
         className="w-full md:w-1/2 p-3 text-center md:text-left"
       >
-        <h2 className="text-5xl font-bold text-primary mb-4 pl-2 border-l-2 border-primary">
+        <h2 className="text-5xl font-bold text-blue-600 ch mb-4 pl-2 border-l-2 border-primary">
        {item?.title}
         </h2>
         <p className="text-lg leading-relaxed mb-6">

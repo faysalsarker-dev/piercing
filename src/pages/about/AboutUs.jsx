@@ -12,7 +12,7 @@ const AboutUs = () => {
             alt="About Us"
           />
           <div>
-            <h1 className="text-4xl font-bold text-primary">Who We Are</h1>
+            <h1 className="text-4xl font-bold text-blue-600 ch">Who We Are</h1>
             <p className="py-6 text-lg">
               We are a passionate team dedicated to providing the best solutions.
               Our mission is to bring innovation and creativity to the digital world.
@@ -24,7 +24,7 @@ const AboutUs = () => {
 
       {/* Our Team Section */}
       <div className="mt-12 text-center">
-        <h2 className="text-3xl font-bold text-primary">Meet Our Team</h2>
+        <h2 className="text-3xl font-bold text-blue-600 ch">Meet Our Team</h2>
         <p className="mt-2 text-gray-600">
           Our team is composed of skilled professionals with a passion for excellence.
         </p>

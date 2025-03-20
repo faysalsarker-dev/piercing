@@ -27,7 +27,7 @@ const Hero = () => {
 
             Din specialist på piercing och öronhåltagning i Stockholm.
 Vi erbjuder trygga, professionella och hygieniska
-<span className='font-extrabold'> piercingar</span> för både vuxna, barn och bebisar. Vår piercare ar certifierad och har en bakgrund som sjuksköterska,
+<span className='font-extrabold'> piercingar</span> för både vuxna, barn och bebisar. Vår piercare är certifierad och har en bakgrund som sjuksköterska,
 
 
 
@@ -36,7 +36,7 @@ Vi erbjuder trygga, professionella och hygieniska
           {/* Buttons */}
           <div className="flex flex-wrap justify-center gap-4">
   <Link to="/online-booking">
-    <button className="px-6 py-2 bg-primary roboto text-white  font-semibold rounded-full shadow-lg border border-primary transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-transparent hover:text-primary">
+    <button className="px-6 py-2 bg-blue-600  roboto text-white  font-semibold rounded-full shadow-lg border border-primary transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-transparent hover:text-blue-600 ch">
     Boka nu
     </button>
   </Link>

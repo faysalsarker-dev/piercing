@@ -17,6 +17,9 @@ import ClientReview from './../admin/ClientReview';
 import PasswordReset from "../admin/PasswordReset";
 import Protector from './Protector';
 import AfterCare from "../pages/afterCare/AfterCare";
+import PiercingPriceList from "../pages/piercing/PiercingPriceList";
+import EarPiercingList from "../pages/piercing/EarPiercingList";
+import PriceListPage from "../admin/PriceManagemant";
 
 
 
@@ -48,9 +51,12 @@ const router = createBrowserRouter([
         element:<AfterCare/>
       },
       {
-        path:'Piercing-Oronhåltagning',
-        element:<h3>Piercing
-Öronhåltagning</h3>
+        path:'piercing',
+        element:<PiercingPriceList/>
+      },
+      {
+        path:'oronhåltagning',
+        element:<EarPiercingList/>
       },
       {
         path:'after-care',
@@ -77,7 +83,11 @@ const router = createBrowserRouter([
         element: <PostEdit />,
       },
       {
-        path:'all-booings', 
+        path:'all-price', 
+        element: <PriceListPage />,
+      },
+      {
+        path:'all-bookings', 
         element: <AllBookings />,
       },
       {

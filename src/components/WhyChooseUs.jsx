@@ -12,7 +12,7 @@ const WhyChooseUs = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="text-3xl font-bold text-center text-primary mb-8"
+        className="text-3xl font-bold text-center text-blue-600 ch mb-8"
       >
        Vad gör oss unika?
       </motion.h2>
@@ -43,14 +43,14 @@ const WhyChooseUs = () => {
           viewport={{ once: true }}
         >
      
-          <p className="text-sm dark:text-white text-gray-700 mb-4">
+          <p className="text-sm  mb-4">
             På Piercing Södermalm sätter vi säkerhet, Professionalism och en
             förstklassig kundupplevelse främsta rummet. Här är varför vi är det
             självklara valet för din nästa piercing:
           </p>
 
           {/* Feature List */}
-          <ul className="list-disc list-inside space-y-2 text-sm dark:text-white text-gray-800">
+          <ul className="list-disc list-inside space-y-2 text-sm text-gray-300">
             {[
               "Erfarenhet och trygghet - Vår certifierade piercare har en medicinsk bakgrund för din säkerhet.",
               "Högsta hygienstandard - Vi använder sterila verktyg och smycken samt följer strikta hygienrutiner för att minimera infektionsrisken.",

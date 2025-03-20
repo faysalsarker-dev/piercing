@@ -4,7 +4,6 @@ import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import PopUp from './PopUp';
 import Loading from '../components/loading/Loading';
- 
 
 const Overview = () => {
   const axiosCommon = useAxios();
@@ -13,6 +12,7 @@ const Overview = () => {
   const [bookingDate] = useState(new Date());
   const formattedDate = format(bookingDate, "yyyy-MM-dd");
 
+  // Fetch today's booking data
   const { data, isLoading, error } = useQuery({
     queryKey: ['todays'],
     queryFn: async () => {
@@ -21,21 +21,26 @@ const Overview = () => {
     },
   });
 
-
-
   if (isLoading) {
-    return <div className='flex justify-center items-center h-screen'><Loading/></div>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loading />
+      </div>
+    );
   }
 
   if (error) {
-    return <div>Error fetching data!</div>;
+    return (
+      <div className="flex justify-center items-center h-screen text-red-500">
+        <p>Error fetching data!</p>
+      </div>
+    );
   }
 
-  console.log(data);
-
   return (
-    <div className="container mx-auto">
-      <div className="stats shadow w-full">
+    <div className="px-2 py-6 min-h-screen">
+      {/* Booking Stats */}
+      <div className="stats shadow-lg w-full h-auto card-color mb-5 text-white rounded-lg">
         <div className="stat">
           <div className="stat-figure text-secondary">
             <svg
@@ -53,56 +58,66 @@ const Overview = () => {
             </svg>
           </div>
           <div className="stat-title">Today's Booking</div>
-          <div className="stat-value">{data.length}</div> {/* Corrected from 'lenght' */}
-          <div className="stat-desc">{formattedDate}</div> {/* Using the formatted date from state */}
+          <div className="stat-value">{data.length}</div>
+          <div className="stat-desc">{formattedDate}</div>
         </div>
       </div>
 
-      <div className="overflow-x-auto mt-10">
-      <table className="table w-full border border-gray-200">
-        {/* Table Head */}
-        <thead className="bg-gray-100">
-          <tr className="text-left text-gray-700">
-            <th className="p-3">#</th>
-            <th className="p-3">Name</th>
-            <th className="p-3">Contact</th>
-            <th className="p-3">Booking Date & Time</th>
-            <th className="p-3">Action</th>
-          </tr>
-        </thead>
-        {/* Table Body */}
-        <tbody>
-          {data.map((item, idx) => (
-            <tr key={idx} className="border-t hover:bg-gray-50">
-              <td className="p-3">{idx + 1}</td>
-              <td className="p-3">{item.name}</td>
-              <td className="p-3 flex flex-col">
-                <a 
-                 
-                >
-                  {item.email}
-                </a>
-                <a 
-                 
-                >
-                  {item.phone}
-                </a>
-              </td>
-              <td className="p-3">
-                <span className="block font-semibold">
-                  {format(new Date(item.bookingDate), "EEEE, MMMM d, yyyy")}
-                </span>
-                <span className="text-gray-600">{item.slot}</span>
-              </td>
-              <td className="p-3">
-                <PopUp item={item} />
-              </td>
+      {/* Booking Table */}
+      <div className="overflow-x-auto">
+        <table className="min-w-full border border-gray-700 bg-gray-800 text-white rounded-lg">
+          <thead className="bg-gray-900">
+            <tr className="text-left text-gray-300">
+              <th className="p-3">#</th>
+              <th className="p-3">Name</th>
+              <th className="p-3">Contact</th>
+              <th className="p-3">Service Info</th>
+              <th className="p-3">Booking Date & Time</th>
+              <th className="p-3">Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-
+          </thead>
+          <tbody>
+            {data.map((item, idx) => (
+              <tr
+                key={idx}
+                className="border-b border-gray-700 hover:bg-gray-700 transition-colors"
+              >
+                <td className="p-3 text-center">{idx + 1}</td>
+                <td className="p-3">{item.name}</td>
+                <td className="p-3">
+                  <div className="flex flex-col">
+                    <a
+                      href={`mailto:${item.email}`}
+                      className="text-blue-400 hover:underline"
+                    >
+                      {item.email}
+                    </a>
+                    <a
+                      href={`tel:${item.phone}`}
+                      className="text-blue-400 hover:underline"
+                    >
+                      {item.phone}
+                    </a>
+                  </div>
+                </td>
+                <td className="p-3">
+                  <span className="block font-semibold">{item.servicesName}</span>
+                  <span className="text-gray-400">price {item.price}</span>
+                </td>
+                <td className="p-3">
+                  <span className="block font-semibold">
+                    {format(new Date(item.bookingDate), "EEEE, MMMM d, yyyy")}
+                  </span>
+                  <span className="text-gray-400">{item.slot}</span>
+                </td>
+                <td className="p-3">
+                  <PopUp item={item} />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

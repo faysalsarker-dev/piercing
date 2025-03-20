@@ -5,7 +5,7 @@ const Faq = () => {
   return (
     <div className="py-12">
       {/* Section Heading */}
-      <h2 className="text-3xl font-bold text-center text-primary mb-8 flex justify-center items-center gap-2">
+      <h2 className="text-3xl font-bold text-center text-blue-600 ch mb-8 flex justify-center items-center gap-2">
       Vanliga frågor om piercing och öronhåltagning
       </h2>
 
@@ -44,13 +44,13 @@ const Faq = () => {
                 "Vi ger dig detaljerade eftervårdsinstruktioner och rekommenderar att du rengör piercingen med en mild saltlösning dagligen.",
             },
           ].map((faq, index) => (
-            <div key={index} className="collapse collapse-arrow bg-base-200">
+            <div key={index} className="collapse collapse-arrow card-color">
               <input type="radio" name="faq-accordion" />
               <div className="collapse-title text-lg font-medium">
                 {faq.question}
               </div>
               <div className="collapse-content">
-                <p className="text-gray-700">{faq.answer}</p>
+                <p className="text-gray-600">{faq.answer}</p>
               </div>
             </div>
           ))}

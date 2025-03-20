@@ -27,12 +27,12 @@ const Dashboard = () => {
         title:'Dashboard'
       },
       {
-        path:'all-posts',
+        path:'all-price',
         icon:<BsFileEarmarkPost />,
-        title:'All Posts'
+        title:'All item'
       },
       {
-        path:'all-booings',
+        path:'all-bookings',
         icon:<TbBrandBooking />,
         title:'Booking'
       },
@@ -78,16 +78,16 @@ const Dashboard = () => {
     <input id="my-drawer" type="checkbox" className="drawer-toggle" checked={isOpen} onChange={() => setIsOpen(!isOpen)} />
     <div className="drawer-content flex flex-col">
       {/* Navbar */}
-      <div className="navbar bg-base-100 shadow-md px-4 flex justify-between items-center">
+      <div className="navbar card-color shadow-md px-4 flex justify-between items-center">
         <label htmlFor="my-drawer" className="btn btn-ghost drawer-button lg:hidden">
           <FaBars size={24} className="-ml-3" />
         </label>
-        <h2 className="text-xl font-bold text-primary">Admin Dashboard</h2>
+        <h2 className="text-xl font-bold text-blue-600 ch">Admin Dashboard</h2>
         {/* User Profile */}
         <div className="flex items-center gap-4">
           <div className="text-right hidden md:block">
             <p className="text-sm font-semibold">{user?.email}</p>
-            <p className="text-xs text-gray-500">Admin</p>
+            <p className="text-xs ">Admin</p>
           </div>
           <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
@@ -99,7 +99,7 @@ const Dashboard = () => {
       </div>
       <ul
         tabIndex={0}
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+        className="menu menu-sm dropdown-content card-color rounded-box z-1 mt-3 w-52 p-2 shadow">
         <li><Link to='/reset-password'>Password Reset</Link></li>
         <li><Link to='/login'>Login</Link></li>
         <li onClick={handleLogout}><a>Logout</a></li>
@@ -110,15 +110,15 @@ const Dashboard = () => {
       </div>
     
       {/* Main content */}
-      <div className="p-3 overflow-x-hidden overflow-y-scroll"><Outlet/></div>
+      <div style={{ maxHeight: 'calc(100vh - 60px)' }} className="p-3 overflow-x-hidden overflow-y-scroll" ><Outlet/></div>
     </div>
     
     {/* Sidebar */}
     <div className="drawer-side">
       <label htmlFor="my-drawer" className="drawer-overlay"></label>
-      <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4 shadow-lg space-y-1">
+      <ul className="menu card-color  min-h-full w-80 p-4 shadow-lg space-y-1">
         {/* Website Name / Logo */}
-        <li className="mb-4 text-lg font-bold text-start text-primary">
+        <li className="mb-4 text-lg font-bold text-start text-blue-600 ch">
           🔹 Admin Panel
         </li>
     

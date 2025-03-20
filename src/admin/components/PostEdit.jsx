@@ -140,7 +140,7 @@ const PostEdit = () => {
           {/* Editable Title */}
           <input
             {...register("title")}
-            className="text-5xl font-bold text-primary border-l-2 border-primary pl-2 outline-none w-full bg-transparent focus:ring-2 focus:ring-primary transition-all duration-300"
+            className="text-5xl font-bold text-blue-600 ch border-l-2 border-primary pl-2 outline-none w-full bg-transparent focus:ring-2 focus:ring-primary transition-all duration-300"
           />
 
           {/* Editable Description */}

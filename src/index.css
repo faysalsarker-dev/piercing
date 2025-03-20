@@ -4,14 +4,36 @@
 
 
 
-
 body {
   font-family: "Oswald", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
-  
+  background-color: #1C232B;
+  color: white;
 }
 
 
+.sec-color{
+  background-color: #1C232B;
+}
 
+
+.card-color{
+  background-color: #101727;
+}
+
+
+input , textarea {
+  background-color: #101727; /* Light gray */
+  color: #ffffff; /* Text color */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+input:focus {
+ 
+  outline: none;
+  border-color: #3b82f6; /* Blue border */
+}

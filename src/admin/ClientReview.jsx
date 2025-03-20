@@ -115,7 +115,7 @@ const ClientReview = () => {
             </div>
             <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
                 {testimonials?.map((testimonial) => (
-                    <div key={testimonial.id} className="bg-white p-6 shadow-md rounded-lg relative">
+                    <div key={testimonial.id} className="card-color p-6 shadow-md rounded-lg relative">
                         <MdDelete 
                         
                             className='absolute -top-3 -right-3 cursor-pointer bg-gray-200 p-2
@@ -135,7 +135,7 @@ const ClientReview = () => {
                             })}
                         />
                         <div className="flex flex-col items-center">
-                            <FaQuoteLeft className="text-primary text-4xl mb-3" />
+                            <FaQuoteLeft className="text-blue-600 ch text-4xl mb-3" />
                             <p className="text-gray-600 text-lg italic text-center">
                                 "{testimonial.review}"
                             </p>

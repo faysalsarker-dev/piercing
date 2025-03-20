@@ -29,7 +29,7 @@ const AllBookings = () => {
     }
     
     return (
-        <div className="text-black dark:text-white">
+        <div className="">
             <h3 className="text-2xl font-bold my-3">All Booking</h3>
             <div className="flex gap-4 mb-5">
                 <button 
@@ -53,39 +53,44 @@ const AllBookings = () => {
                 transition={{ duration: 0.3 }}
                 className="overflow-x-auto mt-5"
             >
-                <table className="table w-full border border-gray-200">
-                    <thead className="bg-gray-100">
-                        <tr className="text-left text-gray-700">
-                            <th className="p-3">#</th>
-                            <th className="p-3">Name</th>
-                            <th className="p-3">Contact</th>
-                            <th className="p-3">Booking Date & Time</th>
-                            <th className="p-3">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {data.map((item, idx) => (
-                            <tr key={idx} className="border-t hover:bg-gray-50">
-                                <td className="p-3">{idx + 1}</td>
-                                <td className="p-3">{item.name}</td>
-                                <td className="p-3">
-                                    <a>{item.email}</a>
-                                    <br />
-                                    <a>{item.phone}</a>
-                                </td>
-                                <td className="p-3">
-                                    <span className="block font-semibold">
-                                        {format(new Date(item.bookingDate), "EEEE, MMMM d, yyyy")}
-                                    </span>
-                                    <span className="text-gray-600">{item.slot}</span>
-                                </td>
-                                <td className="p-3">
-                                    <PopUp item={item} />
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+           <table className="w-full border border-gray-700 bg-gray-800 text-white rounded-lg overflow-x-auto">
+    <thead className="bg-gray-900">
+        <tr className="text-left text-gray-300">
+            <th className="p-3">#</th>
+            <th className="p-3">Name</th>
+            <th className="p-3">Contact</th>
+            <th className="p-3">Service Info</th>
+            <th className="p-3">Booking Date & Time</th>
+            <th className="p-3">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {data.map((item, idx) => (
+            <tr key={idx} className="border-b border-gray-700 hover:bg-gray-700 transition-colors">
+                <td className="p-3 text-center">{idx + 1}</td>
+                <td className="p-3">{item.name}</td>
+                <td className="p-3">
+                    <div className="flex flex-col">
+                        <a href={`mailto:${item.email}`} className="text-blue-400 hover:underline">{item.email}</a>
+                        <a href={`tel:${item.phone}`} className="text-blue-400 hover:underline">{item.phone}</a>
+                    </div>
+                </td>
+                <td className="p-3">
+                    <span className="block font-semibold">{item.servicesName}</span>
+                    <span className="text-gray-400">price {item.price}</span>
+                </td>
+                <td className="p-3">
+                    <span className="block font-semibold">{format(new Date(item.bookingDate), "EEEE, MMMM d, yyyy")}</span>
+                    <span className="text-gray-400">{item.slot}</span>
+                </td>
+                <td className="p-3">
+                    <PopUp item={item} />
+                </td>
+            </tr>
+        ))}
+    </tbody>
+</table>
+
             </motion.div>
         </div>
     );
