@@ -1,5 +1,5 @@
 import React from "react";
-import { FaPhoneAlt, FaEnvelope, FaFacebookF, FaInstagram, FaLinkedinIn, FaMapMarkerAlt } from "react-icons/fa";
+import { FaPhoneAlt, FaEnvelope, FaFacebookF, FaInstagram, FaMapMarkerAlt } from "react-icons/fa";
 
 const Contact = () => {
   return (
@@ -14,7 +14,7 @@ const Contact = () => {
         {/* Contact Info */}
         <div className="card-color shadow-lg p-6 rounded-lg">
           <h3 className="text-2xl font-semibold text-blue-600 ch mb-4">Hör av dig</h3>
-          <p className="text-gray-200 mb-4">Har du frågor? Kontakta oss när som helst!</p>
+          <p className="text-gray-200 mb-4">Hör av dig – Vi finns här för dig!</p>
 
           {/* Phone */}
           <div className="flex items-center gap-3 mb-3">
@@ -36,15 +36,13 @@ const Contact = () => {
 
           {/* Social Links */}
           <div className="mt-4 flex gap-4">
-            <a href="#" className="text-blue-600 ch text-2xl">
+            <a href="https://www.facebook.com/SalongKlippSodermalm" target="_blank" className="text-blue-600 ch text-2xl">
               <FaFacebookF />
             </a>
-            <a href="#" className="text-blue-600 ch text-2xl">
+            <a href="https://www.instagram.com/klippsodermalm" target="_blank" className="text-blue-600 ch text-2xl">
               <FaInstagram />
             </a>
-            <a href="#" className="text-blue-600 ch text-2xl">
-              <FaLinkedinIn />
-            </a>
+         
           </div>
         </div>
 
@@ -52,7 +50,7 @@ const Contact = () => {
         <div className="overflow-hidden rounded-lg shadow-lg">
         <iframe
   className="w-full h-80 rounded-lg"
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8102.089551448611!2d18.069998199999995!3d59.31328580000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f77fa0007f2c7%3A0x336e86dd54ddac79!2zw4hzw7ZnYXRhbiAxMjgsIDExNiAyNCBTdG9ja2hvbG0sIFN2ZXJpZ2U!5e0!3m2!1sen!2sse!4v1710156475281!5m2!1sen!2sse"
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2036.1742454158832!2d18.075352276153303!3d59.31334731230095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f77f9fff0e7d9%3A0x1bd311418587e94!2sPiercing%20S%C3%B6dermalm!5e0!3m2!1sbn!2sbd!4v1742488054724!5m2!1sbn!2sbd"
   allowFullScreen=""
   loading="lazy"
 ></iframe>

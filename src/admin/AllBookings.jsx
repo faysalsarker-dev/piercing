@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import PopUp from "./PopUp";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Loading from "../components/loading/Loading";
 
 const AllBookings = () => {
     const axiosCommon = useAxios();
@@ -21,8 +22,12 @@ const AllBookings = () => {
     });
     
     if (isLoading) {
-        return <div>Loading...</div>;
-    }
+        return (
+          <div className="flex justify-center items-center h-screen">
+            <Loading />
+          </div>
+        );
+      }
     
     if (error) {
         return <div>Error fetching data!</div>;

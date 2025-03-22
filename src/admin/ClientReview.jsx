@@ -96,8 +96,8 @@ const ClientReview = () => {
             <div className='flex justify-between items-center mb-8'>
                 <h3 className="text-2xl font-semibold">All Client Reviews</h3>
                 <button className="btn bg-blue-600 text-white px-4 py-2 rounded-md" onClick={() => document.getElementById('review_modal').showModal()}>Add Review</button>
-                <dialog id="review_modal" className="modal">
-                    <div className="modal-box">
+                <dialog id="review_modal" className="modal ">
+                    <div className="modal-box card-color">
                         <h3 className="font-bold text-lg">Add Your Review</h3>
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                             <input {...register("name", { required: true })} type="text" placeholder="Your Name" className="input input-bordered w-full p-2" />

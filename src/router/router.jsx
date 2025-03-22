@@ -20,6 +20,7 @@ import AfterCare from "../pages/afterCare/AfterCare";
 import PiercingPriceList from "../pages/piercing/PiercingPriceList";
 import EarPiercingList from "../pages/piercing/EarPiercingList";
 import PriceListPage from "../admin/PriceManagemant";
+import SilverSmycke from "../pages/piercing/Silversmycke";
 
 
 
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path:'after-care',
         element:<AfterCare/>
+      },
+      {
+        path:'silver-smycke',
+        element:<SilverSmycke/>
       },
    
     ]

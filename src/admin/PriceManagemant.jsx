@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import useAxios from "../Hooks/useAxios";
+import Loading from "../components/loading/Loading";
 
 const PriceListPage = () => {
   const [modalData, setModalData] = useState(null);
@@ -34,7 +35,7 @@ const PriceListPage = () => {
     mutationFn: async (formData) => {
       const method = modalData ? "PUT" : "POST";
       const res = await axiosCommon({
-        url: `/price/${modalData ? `/${modalData._id}` : ""}`,
+        url: `/price${modalData ? `/${modalData._id}` : ""}`,
         method,
         data: formData,
       });
@@ -84,6 +85,15 @@ const PriceListPage = () => {
   const onSubmit = (data) => {
     mutation.mutate(data);
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loading />
+      </div>
+    );
+  }
+
 
   return (
     <div  className=" text-white">

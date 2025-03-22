@@ -130,7 +130,7 @@ const OnlineBooking = () => {
     <div className="flex flex-col md:flex-row items-center justify-center gap-8 p-3  min-h-screen">
       {/* Date Picker */}
       <div className="w-full md:w-1/2 flex flex-col items-center  p-3 rounded-xl shadow-lg">
-        <h3 className="text-xl font-semibold mb-4">Select Your Booking Date</h3>
+        <h3 className="text-xl font-semibold mb-4">Välj ditt bokningsdatum</h3>
         <DayPicker
           mode="single"
           selected={bookingDate}
@@ -149,7 +149,7 @@ const OnlineBooking = () => {
       {/* Time Slot Selection & Booking Form */}
       <div className="w-full md:w-1/2  p-3 rounded-xl shadow-lg">
         <h2 className="text-xl font-semibold text-center mb-4">
-          Select a Time Slot ({format(new Date(formattedDate), 'EEEE, MMMM d, yyyy')   })
+        Välj en tidslucka ({format(new Date(formattedDate), 'EEEE, MMMM d, yyyy')   })
         </h2>
 
         {isLoading ? (
@@ -187,37 +187,37 @@ const OnlineBooking = () => {
 
         {/* Booking Form */}
         <div className="bg-gray-800 p-6 mt-2 rounded-lg shadow-lg  ">
-  <h3 className="text-xl font-semibold text-center mb-4 text-white">Booking Details</h3>
+  <h3 className="text-xl font-semibold text-center mb-4 text-white">Bokningsdetaljer</h3>
   <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
     {/* Name Input */}
     <div>
-      <label className="text-gray-300 text-sm font-medium mb-1 block">Your Name</label>
+      <label className="text-gray-300 text-sm font-medium mb-1 block">Ditt namn</label>
       <input
         {...register("name", { required: true })}
         type="text"
-        placeholder="Enter your name"
+        placeholder="ange ditt namn"
         className="input input-bordered w-full p-2 border rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-primary"
       />
     </div>
 
     {/* Email Input */}
     <div>
-      <label className="text-gray-300 text-sm font-medium mb-1 block">Your Email</label>
+      <label className="text-gray-300 text-sm font-medium mb-1 block">Din e-post</label>
       <input
         {...register("email", { required: true })}
         type="email"
-        placeholder="Enter your email"
+        placeholder="ange din e-postadress"
         className="input input-bordered w-full p-2 border rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-primary"
       />
     </div>
 
     {/* Phone Input */}
     <div>
-      <label className="text-gray-300 text-sm font-medium mb-1 block">Your Phone</label>
+      <label className="text-gray-300 text-sm font-medium mb-1 block">Din telefon</label>
       <input
         {...register("phone", { required: true })}
         type="tel"
-        placeholder="Enter your phone number"
+        placeholder="ange ditt telefonnummer"
         className="input input-bordered w-full p-2 border rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-primary"
       />
     </div>
@@ -226,7 +226,7 @@ const OnlineBooking = () => {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {/* Service Name */}
       <div>
-        <label className="text-gray-300 text-sm font-medium mb-1 block">Service Name</label>
+        <label className="text-gray-300 text-sm font-medium mb-1 block">Tjänstens namn</label>
         {name ? (
           <input
             {...register("servicesName", { required: true })}
@@ -242,7 +242,7 @@ const OnlineBooking = () => {
             className="select select-bordered w-full card-color text-white focus:ring-2 focus:ring-primary focus:border-primary"
           >
             <option value="" disabled>
-              Select a Service
+            valt en tjänst
             </option>
             {prices?.map((category) => (
               <optgroup key={category?.category} label={category?.category} className="font-bold text-gray-400">
@@ -259,7 +259,7 @@ const OnlineBooking = () => {
 
       {/* Service Price */}
       <div>
-        <label className="text-gray-300 text-sm font-medium mb-1 block">Service Price</label>
+        <label className="text-gray-300 text-sm font-medium mb-1 block">Servicepris</label>
         <input
           {...register("price", { required: true })}
           value={selectedPrice}
@@ -275,7 +275,7 @@ const OnlineBooking = () => {
       type="submit"
       className="btn btn-primary text-white w-full py-2 mt-4 rounded-lg transition-all hover:bg-primary/80 focus:ring-2 focus:ring-primary focus:ring-opacity-50"
     >
-      {isPending ? "Booking..." : "Confirm Booking"}
+      {isPending ? "Bokning..." : "bekräfta bokningen"}
     </button>
   </form>
 </div>
