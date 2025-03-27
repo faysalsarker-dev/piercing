@@ -21,6 +21,7 @@ import PiercingPriceList from "../pages/piercing/PiercingPriceList";
 import EarPiercingList from "../pages/piercing/EarPiercingList";
 import PriceListPage from "../admin/PriceManagemant";
 import SilverSmycke from "../pages/piercing/Silversmycke";
+import AdminBookingPage from './../admin/AdminBookingPage';
 
 
 
@@ -94,6 +95,10 @@ const router = createBrowserRouter([
       {
         path:'all-bookings', 
         element: <AllBookings />,
+      },
+      {
+        path:'add-bookings', 
+        element: <AdminBookingPage />,
       },
       {
         path:'review', 

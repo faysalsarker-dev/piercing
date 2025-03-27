@@ -50,7 +50,7 @@ const Faq = () => {
                 {faq.question}
               </div>
               <div className="collapse-content">
-                <p className="text-gray-600">{faq.answer}</p>
+                <p className="text-gray-200">{faq.answer}</p>
               </div>
             </div>
           ))}

@@ -13,7 +13,7 @@ const AllBookings = () => {
       const formattedDate = format(bookingDate, "yyyy-MM-dd");
     const dateQuery = tab === 'current' ? 'today' : 'yesterday';
     
-    const { data, isLoading, error } = useQuery({
+    const { data, isLoading, error ,refetch} = useQuery({
         queryKey: ['all-booking', dateQuery],
         queryFn: async () => {
           const { data } = await axiosCommon.get(`/online-booking?dateQuery=${dateQuery}&date=${formattedDate}`);
@@ -72,7 +72,14 @@ const AllBookings = () => {
     <tbody>
         {data.map((item, idx) => (
             <tr key={idx} className="border-b border-gray-700 hover:bg-gray-700 transition-colors">
-                <td className="p-3 text-center">{idx + 1}</td>
+              <td
+  className={`p-3 text-center ${
+    item?.status === "cancelled" ? "text-red-500" : "text-green-500"
+  }`}
+>
+  {idx + 1}
+</td>
+
                 <td className="p-3">{item.name}</td>
                 <td className="p-3">
                     <div className="flex flex-col">
@@ -89,7 +96,7 @@ const AllBookings = () => {
                     <span className="text-gray-400">{item.slot}</span>
                 </td>
                 <td className="p-3">
-                    <PopUp item={item} />
+                    <PopUp refetch={refetch} item={item} />
                 </td>
             </tr>
         ))}

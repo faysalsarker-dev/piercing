@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { format } from "date-fns";
-import { motion } from "framer-motion"; 
+import { motion } from "framer-motion";
+import { useMutation } from "@tanstack/react-query";
+import useAxios from "../Hooks/useAxios";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
-const PopUp = ({ item }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false); 
+const PopUp = ({ item  ,refetch}) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const axiosCommon = useAxios();
 
   const formatDateFS = (dateString) => {
     return format(new Date(dateString), "EEEE, MMMM d, yyyy");
@@ -14,7 +19,45 @@ const PopUp = ({ item }) => {
   };
 
   const closeModal = () => {
-    setIsModalOpen(false); 
+    setIsModalOpen(false);
+  };
+
+  const { mutateAsync, isPending } = useMutation({
+    mutationFn: async (info) => {
+      const { data } = await axiosCommon.put(`/online-booking/${info._id}`, {
+        ...info,
+        status: "cancelled",
+        bookingDate:'0000-00-00',
+        slot:'00:00',
+       
+
+      });
+      return data;
+    },
+    onSuccess: () => {
+      refetch();
+      setIsModalOpen(false);
+      toast.success("Booking cancelled successfully.");
+    },
+    onError: () => {
+      toast.error("An error occurred while canceling your booking.");
+    },
+  });
+
+  const handleCancelBooking = async () => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to undo this action!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, cancel it!",
+    });
+
+    if (result.isConfirmed) {
+      await mutateAsync(item);
+    }
   };
 
   return (
@@ -30,25 +73,13 @@ const PopUp = ({ item }) => {
         <motion.dialog
           open
           className="modal"
-        initial={{ opacity: 0, y: 50 }}  // Start below and invisible
-          animate={{
-            opacity: 1,      // Fade in
-            y: 0,            // Move to original position
-            transition: {
-              duration: 0.1, // Faster animation (0.3 seconds)
-            },
-          }}
-          exit={{
-            opacity: 0,     // Fade out
-            y: 50,          // Move down before exiting
-            transition: {
-              duration: 0.1,  // Same fast exit
-            },
-          }}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0, transition: { duration: 0.1 } }}
+          exit={{ opacity: 0, y: 50, transition: { duration: 0.1 } }}
         >
           <div className="modal-box p-6 card-color rounded-lg shadow-lg">
             <h2 className="text-2xl font-bold text-blue-700">Booking Details</h2>
-            <div className="mt-4 space-y-3 ">
+            <div className="mt-4 space-y-3">
               <p>
                 <span className="font-semibold">Name:</span> {item.name}
               </p>
@@ -71,30 +102,46 @@ const PopUp = ({ item }) => {
                 </a>
               </p>
               <p>
-                <span className="font-semibold">Booking Date:</span> {formatDateFS(item.bookingDate)}
+                <span className="font-semibold">Booking Date:</span>{" "}
+                {formatDateFS(item.bookingDate)}
               </p>
               <p>
                 <span className="font-semibold">Time Slot:</span> {item.slot}
               </p>
               <p>
-                <span className="font-semibold">Services:</span> {item.servicesName}
+                <span className="font-semibold">Services:</span>{" "}
+                {item.servicesName}
               </p>
               <p>
                 <span className="font-semibold">Price:</span> {item.price}
               </p>
             </div>
 
-            <div className="modal-action mt-4">
-              <form method="dialog">
-                <button
-                  type="button"
-                  className="btn bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition"
-                  onClick={closeModal}
-                >
-                  Close
-                </button>
-              </form>
-            </div>
+            <div className="modal-action mt-4 flex justify-between gap-4">
+
+
+              {item.status !== "cancelled" && (  
+
+<button
+    type="button"
+    onClick={handleCancelBooking}
+    disabled={isPending}
+    className="btn border-0 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
+  >
+    Cancel Booking
+  </button>
+
+              )}
+  
+  <button
+    type="button"
+    className="btn bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition"
+    onClick={closeModal}
+  >
+    Close
+  </button>
+</div>
+
           </div>
         </motion.dialog>
       )}

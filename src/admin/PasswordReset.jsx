@@ -25,7 +25,7 @@ const navigate = useNavigate()
 
   return (
     <div className="min-h-screen relative flex items-center justify-center  px-4">
-        <FaArrowLeft onClick={()=>navigate(-1)} className="absolute top-3 left-3 bg-gray-300 w-14 p-3 rounded-lg h-14 shadow-2xl" />
+        <FaArrowLeft onClick={()=>navigate(-1)} className="absolute top-3 left-3 card-color w-14 p-3 rounded-lg h-14 shadow-2xl" />
       <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-6">
         <h2 className="text-2xl font-bold text-center text-blue-600">Reset Your Password</h2>
 

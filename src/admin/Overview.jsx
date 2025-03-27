@@ -4,6 +4,8 @@ import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import PopUp from './PopUp';
 import Loading from '../components/loading/Loading';
+import AdminBookingPage from './AdminBookingPage';
+
 
 const Overview = () => {
   const axiosCommon = useAxios();
@@ -13,7 +15,7 @@ const Overview = () => {
   const formattedDate = format(bookingDate, "yyyy-MM-dd");
 
   // Fetch today's booking data
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error,refetch } = useQuery({
     queryKey: ['todays'],
     queryFn: async () => {
       const { data } = await axiosCommon.get(`/online-booking/todays-book/${formattedDate}`);
@@ -62,7 +64,9 @@ const Overview = () => {
           <div className="stat-desc">{formattedDate}</div>
         </div>
       </div>
-
+<div>
+  <AdminBookingPage/>
+</div>
       {/* Booking Table */}
       <div className="overflow-x-auto">
         <table className="min-w-full border border-gray-700 bg-gray-800 text-white rounded-lg">
@@ -82,7 +86,14 @@ const Overview = () => {
                 key={idx}
                 className="border-b border-gray-700 hover:bg-gray-700 transition-colors"
               >
-                <td className="p-3 text-center">{idx + 1}</td>
+               <td
+  className={`p-3 text-center ${
+    item?.status === "cancelled" ? "text-red-500" : "text-green-500"
+  }`}
+>
+  {idx + 1}
+</td>
+
                 <td className="p-3">{item.name}</td>
                 <td className="p-3">
                   <div className="flex flex-col">
@@ -111,7 +122,7 @@ const Overview = () => {
                   <span className="text-gray-400">{item.slot}</span>
                 </td>
                 <td className="p-3">
-                  <PopUp item={item} />
+                  <PopUp refetch={refetch} item={item} />
                 </td>
               </tr>
             ))}
