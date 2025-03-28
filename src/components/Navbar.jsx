@@ -12,6 +12,7 @@ const Navbar = () => {
     { name: "After Care", path: "/after-care" },
     { name: "Silver smycke", path: "/silver-smycke" },
     { name: "Boka online", path: "/online-booking" },
+    { name: "Mina bokningar", path: "/my-bookings" },
     { name: "Kontakta oss", path: "/contactus" },
   ];
 

@@ -26,7 +26,7 @@ const generateTimeSlots = (date) => {
   return timeSlots;
 };
 
-const AdminBookingPage = () => {
+const AdminBookingPage = ({refetch:reload}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [bookingDate, setBookingDate] = useState(new Date());
   const [slot, setSlot] = useState("");
@@ -59,6 +59,8 @@ const AdminBookingPage = () => {
       toast.success("Booking confirmed successfully.");
       setIsOpen(false);
       refetch();
+      reload();
+      setSlot("");
     },
     onError: () => {
       toast.error("An error occurred while submitting your request.");

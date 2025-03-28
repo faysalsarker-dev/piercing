@@ -27,10 +27,6 @@ const PopUp = ({ item  ,refetch}) => {
       const { data } = await axiosCommon.put(`/online-booking/${info._id}`, {
         ...info,
         status: "cancelled",
-        bookingDate:'0000-00-00',
-        slot:'00:00',
-       
-
       });
       return data;
     },

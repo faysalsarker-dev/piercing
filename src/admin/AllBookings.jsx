@@ -9,14 +9,14 @@ import Loading from "../components/loading/Loading";
 const AllBookings = () => {
     const axiosCommon = useAxios();
     const [tab, setTab] = useState('current');
-      const [bookingDate] = useState(new Date());
-      const formattedDate = format(bookingDate, "yyyy-MM-dd");
+      
+      
     const dateQuery = tab === 'current' ? 'today' : 'yesterday';
-    
+   
     const { data, isLoading, error ,refetch} = useQuery({
         queryKey: ['all-booking', dateQuery],
         queryFn: async () => {
-          const { data } = await axiosCommon.get(`/online-booking?dateQuery=${dateQuery}&date=${formattedDate}`);
+          const { data } = await axiosCommon.get(`/online-booking?dateQuery=${dateQuery}`);
           return data;
         },
     });
@@ -66,15 +66,17 @@ const AllBookings = () => {
             <th className="p-3">Contact</th>
             <th className="p-3">Service Info</th>
             <th className="p-3">Booking Date & Time</th>
+            <th className="p-3">Status</th>
             <th className="p-3">Action</th>
         </tr>
     </thead>
     <tbody>
-        {data.length === 0 ? (
+        {data?.length === 0 ? (
         <p className="text-center text-gray-500">No bookings found.</p>
       ):(
 
         data?.map((item, idx) => (
+            console.log(item.bookingDate),
             <tr key={idx} className="border-b border-gray-700 hover:bg-gray-700 transition-colors">
               <td
   className={`p-3 text-center ${
@@ -84,21 +86,31 @@ const AllBookings = () => {
   {idx + 1}
 </td>
 
-                <td className="p-3">{item.name}</td>
+                <td className="p-3">{item?.name}</td>
                 <td className="p-3">
                     <div className="flex flex-col">
-                        <a href={`mailto:${item.email}`} className="text-blue-400 hover:underline">{item.email}</a>
-                        <a href={`tel:${item.phone}`} className="text-blue-400 hover:underline">{item.phone}</a>
+                        <a href={`mailto:${item?.email}`} className="text-blue-400 hover:underline">{item.email}</a>
+                        <a href={`tel:${item?.phone}`} className="text-blue-400 hover:underline">{item.phone}</a>
                     </div>
                 </td>
                 <td className="p-3">
-                    <span className="block font-semibold">{item.servicesName}</span>
-                    <span className="text-gray-400">price {item.price}</span>
+                    <span className="block font-semibold">{item?.servicesName}</span>
+                    <span className="text-gray-400">price {item?.price}</span>
                 </td>
                 <td className="p-3">
-                    <span className="block font-semibold">{format(new Date(item.bookingDate), "EEEE, MMMM d, yyyy")}</span>
-                    <span className="text-gray-400">{item.slot}</span>
+                <span className="block font-semibold">
+  {item?.bookingDate && !isNaN(new Date(item?.bookingDate).getTime()) 
+    ? format(new Date(item?.bookingDate), "EEEE, MMMM d, yyyy")
+    : 'Invalid Date'}
+</span>
+
+
+                    <span className="text-gray-400">{item?.slot}</span>
                 </td>
+                <td className="p-3">
+                
+                <span className={`${item?.status === 'confirmed'?'text-green-400':'text-red-500'} `}>{item.status}</span>
+              </td>
                 <td className="p-3">
                     <PopUp refetch={refetch} item={item} />
                 </td>

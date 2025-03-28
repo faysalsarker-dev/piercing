@@ -5,24 +5,50 @@ import {  FaRedo, FaTimesCircle } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
 
-// Fetch bookings from localStorage
-const getBookings = async () => {
+import useAxios from "../../Hooks/useAxios";
+import Loading from "../../components/loading/Loading";
+
+
+const getBookings = () => {
   const data = localStorage.getItem("myBookings");
   return data ? JSON.parse(data) : [];
 };
 
 export default function MyBookings() {
-  const { data: bookings = [] } = useQuery({
-    queryKey: ["myBookings"],
-    queryFn: getBookings,
-  });
+  const axiosCommon = useAxios();
+  const navigate = useNavigate();
 
-const navigate = useNavigate    ()
-  // Cancel booking handler
+  const {
+    data: bookings = [],
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["myBookings"],
+    queryFn: async () => {
+      const storedIds = getBookings();
+  
+      if (!storedIds.length) return [];
+  
+      const { data } = await axiosCommon.get(
+        `/my-bookings?ids=${storedIds.join(",")}`
+      );
+  
+      // Extract only valid IDs returned from DB
+      const validIds = data.map((item) => item._id);
+  
+      // Remove any invalid IDs from localStorage
+      const filtered = storedIds.filter((id) => validIds.includes(id));
+      localStorage.setItem("myBookings", JSON.stringify(filtered));
+  
+      return data;
+    },
+    enabled: !!getBookings().length,
+  });
+  
   const handleCancel = (id) => {
     const updatedBookings = bookings.filter((booking) => booking._id !== id);
     localStorage.setItem("myBookings", JSON.stringify(updatedBookings));
-    window.location.reload(); // Or use queryClient.invalidateQueries if you're using it
+    window.location.reload();
   };
 
   const handleCancelConfirmation = (id) => {
@@ -43,9 +69,27 @@ const navigate = useNavigate    ()
     });
   };
 
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loading />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-screen text-red-500">
+        <p>Error fetching data!</p>
+      </div>
+    );
+  }
+
+
   return (
     <div className="p-6 max-w-5xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6 text-center">My Bookings</h2>
+      <h2 className="text-3xl font-bold mb-6 text-center">Mina bokningar</h2>
+      <h2 className="text-xl font-bold mb-6 text-center">Kom ihåg att bokningar inte kan avbokas efter 2 timmar.</h2>
 
       {bookings.length === 0 ? (
   <p className="text-center text-gray-200">Inga bokningar hittades.</p>
@@ -57,8 +101,7 @@ const navigate = useNavigate    ()
         name,
         servicesName,
         price,
-        email,
-        phone,
+      
         bookingDate,
         slot,
         status,
@@ -101,7 +144,7 @@ const navigate = useNavigate    ()
           </p>
           <p>
             <span className="font-medium">Status:</span>{" "}
-            <span className="font-semibold text-green-600">{status}</span>
+            <span className={`font-semibold ${status === 'cancelled'?'text-red-500': 'text-green-600'} `}>{status}</span>
           </p>
 
           {/* Knappar */}

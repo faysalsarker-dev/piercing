@@ -65,7 +65,7 @@ const Overview = () => {
         </div>
       </div>
 <div>
-  <AdminBookingPage/>
+  <AdminBookingPage refetch={refetch}/>
 </div>
       {/* Booking Table */}
       <div className="overflow-x-auto">
@@ -77,6 +77,7 @@ const Overview = () => {
               <th className="p-3">Contact</th>
               <th className="p-3">Service Info</th>
               <th className="p-3">Booking Date & Time</th>
+              <th className="p-3">Status</th>
               <th className="p-3">Action</th>
             </tr>
           </thead>
@@ -120,6 +121,10 @@ const Overview = () => {
                     {format(new Date(item.bookingDate), "EEEE, MMMM d, yyyy")}
                   </span>
                   <span className="text-gray-400">{item.slot}</span>
+                </td>
+                <td className="p-3">
+                
+                  <span className={`${item?.status === 'confirmed'?'text-green-400':'text-red-500'} `}>{item.status}</span>
                 </td>
                 <td className="p-3">
                   <PopUp refetch={refetch} item={item} />

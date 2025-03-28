@@ -104,21 +104,6 @@ const navigate = useNavigate();
     reset();
   };
 
-  // Mutation for booking
-  // const { mutateAsync, isPending } = useMutation({
-  //   mutationFn: async (info) => {
-  //     const { data } = await axiosCommon.post(`/online-booking`, info);
-  //     return data;
-  //   },
-  //   onSuccess: () => {
-  //     toast.success("Booking confirmed successfully.");
-  //     reset();
-  //     refetch();
-  //   },
-  //   onError: () => {
-  //     toast.error("An error occurred while submitting your request.");
-  //   },
-  // });
 
 
   const { mutateAsync, isPending } = useMutation({
@@ -134,11 +119,12 @@ const navigate = useNavigate();
 
       // Save to localStorage
       const existing = JSON.parse(localStorage.getItem("myBookings")) || [];
-      const updated = [...existing, data.booking];
+      console.log(data.booking._id, "data.booking._id");
+      const updated = [...existing, data.booking._id];
       localStorage.setItem("myBookings", JSON.stringify(updated));
   
       reset();
-      refetch(); // if you are using TanStack Query to show booking list somewhere
+      refetch(); 
     },
     onError: () => {
       toast.error("An error occurred while submitting your request.");
