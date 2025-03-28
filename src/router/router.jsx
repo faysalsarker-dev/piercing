@@ -22,6 +22,7 @@ import EarPiercingList from "../pages/piercing/EarPiercingList";
 import PriceListPage from "../admin/PriceManagemant";
 import SilverSmycke from "../pages/piercing/Silversmycke";
 import AdminBookingPage from './../admin/AdminBookingPage';
+import MyBookings from "../pages/myBookings/MyBookings";
 
 
 
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path:'silver-smycke',
         element:<SilverSmycke/>
+      },
+      {
+        path:'my-bookings',
+        element:<MyBookings/>
       },
    
     ]

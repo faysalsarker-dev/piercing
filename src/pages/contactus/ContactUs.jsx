@@ -1,7 +1,10 @@
+import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 
 import toast from "react-hot-toast";
-import emailjs from '@emailjs/browser';
+
+import useAxios from "../../Hooks/useAxios";
+
 
 const ContactUs = () => {
   const {
@@ -10,25 +13,34 @@ const ContactUs = () => {
     formState: { errors },
     reset,
   } = useForm();
+const axiosCommon = useAxios()
+
+
+
+
+
+
+
+  const { mutateAsync, isPending } = useMutation({
+    mutationFn: async (info) => {
+      const { data } = await axiosCommon.post(`/send-email`, info);
+      return data;
+    },
+    onSuccess: () => {
+      toast.success("Your message has been sent successfully!");
+      reset();
+    
+    },
+    onError: () => {
+      toast.error("An error occurred while submitting your request.");
+    },
+  });
+
+
+
 
   const onSubmit = (data) => {
-    emailjs
-      .send(
-        "service_9908vav", // Replace with your EmailJS service ID
-        "template_xdj1ylx", // Replace with your EmailJS template ID
-        data,
-        "rB0X5Rl-ljhGJ9eOV" // Replace with your EmailJS user ID
-      )
-      .then(
-        () => {
-          toast.success("Meddelandet har skickats framgångsrikt!");
-          reset();
-        },
-        (error) => {
-          toast.error("Ett fel uppstod. Försök igen senare.");
-          console.error("EmailJS Error:", error);
-        }
-      );
+    mutateAsync(data);
   };
 
   return (
@@ -70,7 +82,7 @@ const ContactUs = () => {
             ></textarea>
             {errors.message && <p className="text-red-500 text-sm">{errors.message.message}</p>}
           </div>
-          <button type="submit" className="btn btn-primary w-full">Skicka meddelande</button>
+          <button disabled={isPending} type="submit" className="btn btn-primary w-full">Skicka meddelande</button>
         </form>
       </div>
 

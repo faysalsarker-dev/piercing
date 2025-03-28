@@ -59,9 +59,9 @@ const Overview = () => {
               ></path>
             </svg>
           </div>
-          <div className="stat-title">Today's Booking</div>
-          <div className="stat-value">{data.length}</div>
-          <div className="stat-desc">{formattedDate}</div>
+          <div className="stat-title text-white">Today's Booking</div>
+          <div className="stat-value text-white">{data.length}</div>
+          <div className="stat-desc text-white">{formattedDate}</div>
         </div>
       </div>
 <div>

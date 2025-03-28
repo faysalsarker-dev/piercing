@@ -70,7 +70,11 @@ const AllBookings = () => {
         </tr>
     </thead>
     <tbody>
-        {data.map((item, idx) => (
+        {data.length === 0 ? (
+        <p className="text-center text-gray-500">No bookings found.</p>
+      ):(
+
+        data?.map((item, idx) => (
             <tr key={idx} className="border-b border-gray-700 hover:bg-gray-700 transition-colors">
               <td
   className={`p-3 text-center ${
@@ -99,7 +103,13 @@ const AllBookings = () => {
                     <PopUp refetch={refetch} item={item} />
                 </td>
             </tr>
-        ))}
+        ))
+
+      )
+      
+      }
+        
+     
     </tbody>
 </table>
 

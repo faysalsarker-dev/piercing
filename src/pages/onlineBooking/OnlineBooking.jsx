@@ -7,7 +7,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxios from "./../../Hooks/useAxios";
 import toast from "react-hot-toast";
 import Loading from "../../components/loading/Loading";
-import { useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 
 const generateTimeSlots = (date) => {
   if (!date) return [];
@@ -42,7 +42,7 @@ const OnlineBooking = () => {
   const [selectedService, setSelectedService] = useState(name || "");
   const [selectedPrice, setSelectedPrice] = useState(price || "");
 
-
+const navigate = useNavigate();
 
 
   const { data:prices } = useQuery({
@@ -105,20 +105,53 @@ const OnlineBooking = () => {
   };
 
   // Mutation for booking
+  // const { mutateAsync, isPending } = useMutation({
+  //   mutationFn: async (info) => {
+  //     const { data } = await axiosCommon.post(`/online-booking`, info);
+  //     return data;
+  //   },
+  //   onSuccess: () => {
+  //     toast.success("Booking confirmed successfully.");
+  //     reset();
+  //     refetch();
+  //   },
+  //   onError: () => {
+  //     toast.error("An error occurred while submitting your request.");
+  //   },
+  // });
+
+
   const { mutateAsync, isPending } = useMutation({
     mutationFn: async (info) => {
       const { data } = await axiosCommon.post(`/online-booking`, info);
-      return data;
+      
+      return data; // assuming server returns saved booking object with _id etc.
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
+
+      navigate('/my-bookings')
       toast.success("Booking confirmed successfully.");
+
+      // Save to localStorage
+      const existing = JSON.parse(localStorage.getItem("myBookings")) || [];
+      const updated = [...existing, data.booking];
+      localStorage.setItem("myBookings", JSON.stringify(updated));
+  
       reset();
-      refetch();
+      refetch(); // if you are using TanStack Query to show booking list somewhere
     },
     onError: () => {
       toast.error("An error occurred while submitting your request.");
     },
   });
+  
+
+
+
+
+
+
+
 
   // Handle form submission
   const onSubmit = async (data) => {
