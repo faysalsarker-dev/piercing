@@ -4,6 +4,23 @@ import Logo from "/logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+ const [existingBooking, setExistingBooking] = useState([]);
+   const [_, setHasMounted] = useState(false);
+
+
+  useEffect(() => {
+        setHasMounted(true);
+
+    const stored = localStorage.getItem("myBookings");
+    if (stored) {
+     
+        setExistingBooking(JSON.parse(stored));
+      
+    }
+  }, []);
+
+
   const dropdownRef = useRef(null);
   const navItems = [
     { name: "Hem", path: "/" },
@@ -11,9 +28,12 @@ const Navbar = () => {
     { name: "Öronhåltagning", path: "/oronhåltagning" },
     { name: "After Care", path: "/after-care" },
     { name: "Silver smycke", path: "/silver-smycke" },
-    { name: "Boka online", path: "/online-booking" },
-    { name: "Mina bokningar", path: "/my-bookings" },
+      ...(existingBooking.length > 0
+    ? [{ name: 'Mina bokningar', path: '/my-bookings' }]
+    : []),
+   
     { name: "Kontakta oss", path: "/contactus" },
+    { name: "Baku nu", path: "/online-booking" },
   ];
 
   const handleMenuToggle = () => {
@@ -66,6 +86,7 @@ const Navbar = () => {
               </NavLink>
             </li>
           ))}
+     
         </ul>
       </div>
 

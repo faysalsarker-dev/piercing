@@ -1,175 +1,92 @@
-import React from "react";
-import { useQuery } from "@tanstack/react-query";
-import { format, parseISO, differenceInHours  } from "date-fns";
-import {  FaRedo, FaTimesCircle } from "react-icons/fa";
-import Swal from "sweetalert2";
-import { useNavigate } from "react-router";
 
-import useAxios from "../../Hooks/useAxios";
-import Loading from "../../components/loading/Loading";
+import { useQuery } from '@tanstack/react-query';
+import useApi from '../../Hooks/useApi';
+import MyBook from './BookCard';
 
 
-const getBookings = () => {
-  const data = localStorage.getItem("myBookings");
-  return data ? JSON.parse(data) : [];
+
+const getStoredBookings = () => {
+  const stored = localStorage.getItem('myBookings');
+  return stored ? JSON.parse(stored) : [];
 };
 
-export default function MyBookings() {
-  const axiosCommon = useAxios();
-  const navigate = useNavigate();
+
+
+export default function MyBookingsPage() {
+const api = useApi();
+
 
   const {
     data: bookings = [],
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["myBookings"],
+    queryKey: ['myBookings'],
     queryFn: async () => {
-      const storedIds = getBookings();
-  
+      const storedIds = getStoredBookings();
       if (!storedIds.length) return [];
-  
-      const { data } = await axiosCommon.get(
-        `/my-bookings?ids=${storedIds.join(",")}`
-      );
-  
-      // Extract only valid IDs returned from DB
-      const validIds = data.map((item) => item._id);
-  
-      // Remove any invalid IDs from localStorage
+
+      const { data } = await api.get(`/my-bookings?ids=${storedIds.join(',')}`);
+
+      const validIds = data.map((b) => b._id);
       const filtered = storedIds.filter((id) => validIds.includes(id));
-      localStorage.setItem("myBookings", JSON.stringify(filtered));
-  
+      localStorage.setItem('myBookings', JSON.stringify(filtered));
+
       return data;
     },
-    enabled: !!getBookings().length,
+    enabled: typeof window !== 'undefined' && getStoredBookings().length > 0,
   });
-  
-  const handleCancel = (id) => {
-    const updatedBookings = bookings.filter((booking) => booking._id !== id);
-    localStorage.setItem("myBookings", JSON.stringify(updatedBookings));
-    window.location.reload();
-  };
 
-  const handleCancelConfirmation = (id) => {
-    Swal.fire({
-      title: "Är du säker?",
-      text: "Vill du verkligen avboka denna bokning?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Ja, avboka!",
-      cancelButtonText: "Nej, behåll den",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        handleCancel(id);
-        Swal.fire("Avbokad!", "Din bokning har avbokats.", "success");
-      }
-    });
-  };
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <Loading />
-      </div>
-    );
-  }
 
-  if (error) {
-    return (
-      <div className="flex justify-center items-center h-screen text-red-500">
-        <p>Error fetching data!</p>
-      </div>
-    );
-  }
+
 
 
   return (
-    <div className="p-6 max-w-5xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6 text-center">Mina bokningar</h2>
-      <h2 className="text-xl font-bold mb-6 text-center">Kom ihåg att bokningar inte kan avbokas efter 2 timmar.</h2>
+    <div className=" p-6 bg-background-secondary min-h-screen">
+      <h2 className="text-3xl font-bold text-center mb-4">Mina bokningar</h2>
+      <p className="text-center mb-8 text-gray-200">
+      Du kan avboka din bokning upp till 2 timmar före den schemalagda tiden.
+      </p>
+<div className="max-w-4xl mx-auto">
+    
+          {
+         isLoading ? (
+            
+            <div className="p-6 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+      {[...Array(4)].map((_, i) => (
+ <div key={i} className="relative bg-background bg-opacity-30 backdrop-blur-md border border-primary border-opacity-40 rounded-xl shadow-lg p-6 animate-pulse">
+      {/* Date Badge */}
+      <div className="absolute top-5 right-5 w-16 h-20 rounded-md overflow-hidden">
+        <div className="bg-primary bg-opacity-70 rounded-t-md h-6 w-full"></div>
+        <div className="bg-white bg-opacity-70 rounded-b-md h-10 w-full mt-1"></div>
+      </div>
 
-      {bookings.length === 0 ? (
-  <p className="text-center text-gray-200">Inga bokningar hittades.</p>
-) : (
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-    {bookings.map((booking) => {
-      const {
-        _id,
-        name,
-        servicesName,
-        price,
-      
-        bookingDate,
-        slot,
-        status,
-        createdAt,
-      } = booking;
+      {/* Title */}
+      <div className="h-7 bg-primary bg-opacity-70 rounded w-3/4 mb-6"></div>
 
-      // Kontrollera om bokningen kan avbokas (inom 2 timmar)
-      const canCancel = differenceInHours(new Date(), parseISO(createdAt)) < 2;
+      {/* List items placeholders */}
+      <ul className="space-y-4">
+        {[...Array(6)].map((_, i) => (
+          <li key={i} className="h-5 bg-gray-300 rounded w-full max-w-[250px]"></li>
+        ))}
+      </ul>
 
-      return (
-        <div className="card-color rounded-2xl shadow-md border-gray-600 border p-5 space-y-3 hover:shadow-lg transition relative">
-          <h3 className="text-xl font-semibold">
-            {servicesName} - {price} kr
-          </h3>
-
-          {/* Datumruta */}
-          <div className="absolute top-5 right-5 w-24 h-24 text-white text-center">
-            <p className="text-lg bg-blue-700 rounded-t-lg">
-              {format(parseISO(bookingDate), "MMM")}
-            </p>
-            <p className="text-lg font-bold bg-gray-200 rounded-b-lg text-black">
-              {format(parseISO(bookingDate), "dd")}
-            </p>
-          </div>
-
-          <p>
-            <span className="font-medium">Datum:</span>{" "}
-            {format(parseISO(bookingDate), "EEEE, MMMM d, yyyy")}
-          </p>
-          <p>
-            <span className="font-medium">Slutar kl:</span> {slot}
-          </p>
-          <p>
-            <span className="font-medium">Ditt namn:</span> {name}
-          </p>
-
-          <p>
-            <span className="font-medium">Bokningskod:</span>{" "}
-            <span className="text-blue-600">{_id}</span>
-          </p>
-          <p>
-            <span className="font-medium">Status:</span>{" "}
-            <span className={`font-semibold ${status === 'cancelled'?'text-red-500': 'text-green-600'} `}>{status}</span>
-          </p>
-
-          {/* Knappar */}
-          <div className="flex gap-2 mt-3">
-            {canCancel ? (
-              <button
-                onClick={() => handleCancelConfirmation(_id)}
-                className="bg-red-600 text-white px-4 py-2 rounded flex items-center gap-2 hover:bg-red-700"
-              >
-                <FaTimesCircle /> Avboka
-              </button>
-            ) : (
-              <p className="text-sm text-green-600 font-medium">
-                Bokningstiden har passerat eller kan inte avbokas.
-              </p>
-            )}
-            <button onClick={()=>navigate(-1)} className="bg-blue-600 text-white px-4 py-2 rounded flex items-center gap-2 hover:bg-blue-700">
-              <FaRedo /> Boka mer
-            </button>
-          </div>
-        </div>
-      );
-    })}
-  </div>
-)}
+      <div className="mt-6 flex justify-end">
+        <div className="h-9 w-24 bg-error bg-opacity-70 rounded cursor-not-allowed"></div>
+      </div>
+    </div>      ))}
+    </div>
+          ) : error ? (
+            <p className="text-center text-red-500">Error loading bookings: {error.message}</p>
+          ) :
+          
+          bookings.length === 0 ? (
+            <p className="text-center text-gray-500">You have no bookings.</p>
+          ) : (
+        <MyBook bookings={bookings}/>
+          )}
+</div>
     </div>
   );
 }

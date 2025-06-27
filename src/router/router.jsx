@@ -23,6 +23,8 @@ import PriceListPage from "../admin/PriceManagemant";
 import SilverSmycke from "../pages/piercing/Silversmycke";
 import AdminBookingPage from './../admin/AdminBookingPage';
 import MyBookings from "../pages/myBookings/MyBookings";
+import Blogs from "../pages/blog/Blogs";
+import BlogPage from "../pages/blog/blog/BlogPage";
 
 
 
@@ -73,7 +75,14 @@ const router = createBrowserRouter([
         path:'my-bookings',
         element:<MyBookings/>
       },
-   
+      {
+        path:'blog',
+        element:<Blogs/>
+      },
+     {
+        path:'/blog/:slug', 
+        element: <BlogPage />,
+      },
     ]
   },
   {

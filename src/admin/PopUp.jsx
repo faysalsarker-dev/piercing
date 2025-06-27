@@ -24,7 +24,7 @@ const PopUp = ({ item  ,refetch}) => {
 
   const { mutateAsync, isPending } = useMutation({
     mutationFn: async (info) => {
-      const { data } = await axiosCommon.put(`/online-booking/${info._id}`, {
+      const { data } = await axiosCommon.put(`/online-booking/${info._id}?auth=admin`, {
         ...info,
         status: "cancelled",
       });

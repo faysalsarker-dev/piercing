@@ -17,7 +17,7 @@ const OnlineBooking = () => {
         <p className="text-lg mb-6">
         Vill du ta en ny piercing eller få hål i öronen på ett tryggt och professionellt sätt? Boka din tid online, ring oss eller besök oss på drop-in!
         </p>
-    <Link to={'/online-booking'}>
+    <Link to="/online-booking">
           <button className="bg-accent roboto hover:bg-accent-dark text-white text-lg font-semibold px-6 py-3 rounded-md shadow-lg transition">
           Boka nu
           </button>

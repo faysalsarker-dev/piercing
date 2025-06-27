@@ -5,7 +5,8 @@ import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import useAxios from "../Hooks/useAxios";
 import Loading from "../components/loading/Loading";
-
+import AddCat from "./components/AddCat";
+import { MdDelete } from "react-icons/md";
 const PriceListPage = () => {
   const [modalData, setModalData] = useState(null);
   const axiosCommon = useAxios();
@@ -53,7 +54,6 @@ const PriceListPage = () => {
   // Delete Item with SweetAlert2
   const deleteMutation = useMutation({
     mutationFn: async (info) => {
-      console.log(info.category, "inside");
       await axiosCommon.delete(`/price/${info._id}/${info.category}`); 
     },
     onSuccess: () => {
@@ -65,7 +65,6 @@ const PriceListPage = () => {
 
   // Handle Delete Confirmation
   const handleDelete = (info) => {
-    console.log(info)
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -81,6 +80,41 @@ const PriceListPage = () => {
     });
   };
 
+
+  const deleteCat = useMutation({
+    mutationFn: async (info) => {
+      await axiosCommon.delete(`/price/${info}`);
+    },
+    onSuccess: () => {
+      toast.success("Category deleted!");
+      refetch();
+    },
+  });
+
+
+
+
+
+
+  const handleDeleteCat = (info) => {
+    console.log(info);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteCat.mutate(info);
+      }
+    });
+  };
+
+
+
   // Handle form submission
   const onSubmit = (data) => {
     mutation.mutate(data);
@@ -94,21 +128,25 @@ const PriceListPage = () => {
     );
   }
 
-
+console.log(data[0]._id);
   return (
     <div  className=" text-white">
       <h1 className="text-2xl font-bold mb-4 text-center">Price List</h1>
-      <button
-        onClick={() => {
-          reset();
-          setModalData(null);
-          document.getElementById("price-modal").showModal();
-        }}
-        className="btn btn-primary"
-      >
-        + Add New Item
-      </button>
+<div className="flex justify-between">
+        <button
+          onClick={() => {
+            reset();
+            setModalData(null);
+            document.getElementById("price-modal").showModal();
+          }}
+          className="btn btn-primary"
+        >
+          + Add New Item
+        </button>
+  
+<AddCat refetch={refetch}/>
 
+</div>
       {/* Loading & Error */}
       {isLoading ? (
   <p className="text-center mt-4">Loading...</p>
@@ -118,7 +156,12 @@ const PriceListPage = () => {
   <div className="">
     {data?.map((category) => (
       <div key={category._id} className="mt-6 card-color p-3 rounded-lg">
-        <h2 className="text-xl font-semibold">{category.category}</h2>
+
+      <div className="flex justify-between"> 
+         <h2 className="text-xl font-semibold">{category.category}</h2>
+         
+         <button onClick={()=>handleDeleteCat(category._id)} className="btn border-1  border-white btn-ghost text-red-600 "><MdDelete size={20} /></button>
+         </div>
         <div className="overflow-x-auto md:overflow-x-auto">
           <table className="table w-full mt-2">
             <thead className="text-white">
@@ -129,18 +172,20 @@ const PriceListPage = () => {
               </tr>
             </thead>
             <tbody>
-              {category?.items.map((item) => (
+              {category?.items?.map((item) => (
                 <tr key={item._id} className="border-white">
-                  <td>{item.name}</td>
-                  <td>{item.price} </td>
+                  <td>{item?.name}</td>
+                  <td>{item?.price} </td>
+                  <td className="text-blue-600 cursor-pointer"><a href={item?.link} target="_blank">{item?.link} </a></td>
                   <td>
                     <button
                       className="btn btn-sm btn-warning"
                       onClick={() => {
                         setModalData(item);
-                        setValue("category", category.category);
-                        setValue("name", item.name);
-                        setValue("price", item.price);
+                        setValue("category", category?.category);
+                        setValue("name", item?.name);
+                        setValue("price", item?.price);
+                        setValue("link", item?.link);
                         document.getElementById("price-modal").showModal();
                       }}
                     >
@@ -195,6 +240,13 @@ const PriceListPage = () => {
               className="input w-full"
             />
             {errors.price && <span className="text-red-500">Price is required</span>}
+            <input
+              type="text"
+              placeholder="Link"
+              {...register("link", { required: true })}
+              className="input w-full"
+            />
+            {errors.link && <span className="text-red-500">Link is required</span>}
 
             <div className="modal-action">
               <button type="submit" className="btn btn-primary">

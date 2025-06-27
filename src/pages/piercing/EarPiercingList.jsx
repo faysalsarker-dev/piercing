@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import useAxios from "../../Hooks/useAxios";
 import Loading from "../../components/loading/Loading";
 import earPiercing from '../../assets/services2.jpeg'
+import OfferBanners from "../../components/OfferBanners";
 const EarPiercingList = () => {
 
 
@@ -41,18 +42,24 @@ if (isLoading) return <div className="flex justify-center items-center"><Loading
         <p className="text-center text-white italic mb-4">
           I priset ingår ett guld- eller silverpläterat öronsmycke
         </p>
+
+  <OfferBanners />
+
+
         <div className="space-y-4 border border-gray-200 p-3 rounded-lg">
 
         { 
   data?.filter(section => section.category === "Öronhåltagning med pistol")
     .flatMap(section => section.items)
     .map((item, idx) => (
-      <Link key={idx} to={`/online-booking?servicesName=${item.name}&price=${item.price}`}>
-        <div className="flex justify-between items-center border-b pb-4 mt-2">
-          <div className="text-lg font-semibold text-white">{item.name}</div>
-          <div className="text-lg text-white">{item.price}</div>
-        </div>
-      </Link>
+     
+<Link to={`/online-booking?name=${item.name}&price=${item.price}`} key={idx}>
+          <div className="flex justify-between items-center border-b pb-4 mt-2">
+            <div className="text-lg font-semibold text-white">{item.name}</div>
+            <div className="text-lg text-white">{item.price}</div>
+          </div>
+       
+</Link>
     ))
 }
 

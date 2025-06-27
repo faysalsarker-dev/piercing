@@ -1,5 +1,6 @@
 import React from "react";
 import sliverSmycke from '../../assets/services4.jpeg'
+import OfferBanners from "../../components/OfferBanners";
 
 const SilverSmycke = () => {
   return (
@@ -27,6 +28,7 @@ const SilverSmycke = () => {
 
       </p>
     </div>
+      <OfferBanners />
   </div>
   );
 };

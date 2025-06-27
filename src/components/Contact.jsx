@@ -47,15 +47,19 @@ const Contact = () => {
         </div>
 
         {/* Google Maps Embed */}
-        <div className="overflow-hidden rounded-lg shadow-lg">
-        <iframe
-  className="w-full h-80 rounded-lg"
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2036.1742454158832!2d18.075352276153303!3d59.31334731230095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f77f9fff0e7d9%3A0x1bd311418587e94!2sPiercing%20S%C3%B6dermalm!5e0!3m2!1sbn!2sbd!4v1742488054724!5m2!1sbn!2sbd"
-  allowFullScreen=""
-  loading="lazy"
-></iframe>
+      <div className="rounded-lg overflow-hidden shadow-lg">
+            <iframe
+              title="map"
+  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2036.1779290477377!2d18.0775879!3d59.3132858!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f77fcd11d453d%3A0xeabf111cb28a4da0!2sPiercing%20S%C3%B6dermalm!5e0!3m2!1ssv!2sbd!4v1744034781667!5m2!1ssv!2sbd"
 
-        </div>
+              width="100%"
+              height="320"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import aftercare from "../../assets/advice.png";
+import OfferBanners from "../../components/OfferBanners";
 
 const AfterCare = () => {
   return (
@@ -111,7 +112,7 @@ const AfterCare = () => {
       </h3>
       <p>⏳ Vänta alltid tills piercingen är helt läkt innan du byter smycke.</p>
       <p>💡 Tips: Använd smycken i titan eller kirurgiskt stål för att minimera allergiska reaktioner.</p>
-
+  <OfferBanners />
       {/* Contact Info */}
       <p className="text-center text-gray-200 mt-6">
         Genom att följa dessa skötselråd får du en trygg och smidig läkning. Har du frågor?

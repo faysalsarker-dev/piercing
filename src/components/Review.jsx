@@ -52,7 +52,7 @@ const axiosCommon = useAxios()
         className="w-full"
       >
         {testimonials?.map((testimonial) => (
-          <SwiperSlide key={testimonial.id}>
+          <SwiperSlide key={testimonial._id}>
             <div className="card card-color shadow-xl p-6 mx-3">
               <div className="flex flex-col items-center">
                 <FaQuoteLeft className="text-blue-600 ch text-4xl mb-3" />
