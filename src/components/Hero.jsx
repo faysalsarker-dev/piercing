@@ -35,12 +35,12 @@ Vi erbjuder trygga, professionella och hygieniska
           {/* Buttons */}
           <div className="flex flex-wrap justify-center gap-4">
   
-<Link to="/online-booking">
+<a href="https://klippsodermalm.simplybook.it/v2/" target="_blank" rel="noopener noreferrer">
       <button className="px-6 py-2 bg-blue-600  roboto text-white  font-semibold rounded-full shadow-lg border border-primary transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-transparent hover:text-blue-600 ch">
       Boka nu
       </button>
    
-</Link>
+</a>
   <Link to="/contactus">
     <button className="px-6 py-2 bg-secondary text-white roboto  font-semibold rounded-full shadow-lg border border-secondary transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-transparent hover:text-secondary">
     kontakta

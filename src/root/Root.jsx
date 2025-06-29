@@ -9,7 +9,7 @@ const Root = () => {
         <div className="overflow-x-hidden overflow-y-auto ">
             <Navbar/>
             <ScrollToTop/>
-        <div className=" min-h-screen ">
+        <div className=" min-h-screen mt-20">
             <Outlet/>
     </div>
             <Footer/>

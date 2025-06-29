@@ -66,7 +66,7 @@ const Services = () => {
         whileInView="visible"
         viewport={{ once: true }}
         transition={{ duration: 0.7, ease: "easeInOut" }}
-        className="text-4xl font-extrabold text-center text-blue-600 ch mb-12"
+        className="text-4xl font-extrabold text-center text-white ch mb-12"
       >
         Det här erbjuder vi!
       </motion.h2>

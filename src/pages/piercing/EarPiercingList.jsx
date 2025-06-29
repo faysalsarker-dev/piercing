@@ -1,28 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import React from "react";
+
 import { Link } from "react-router";
-import useAxios from "../../Hooks/useAxios";
-import Loading from "../../components/loading/Loading";
+
 import earPiercing from '../../assets/services2.jpeg'
 import OfferBanners from "../../components/OfferBanners";
+import ServicesList from "../../components/ServicesList";
 const EarPiercingList = () => {
 
-
-  const axiosCommon = useAxios()
-
-  const { data,isLoading } = useQuery({
-      queryKey: ["price"],
-      queryFn: async () => {
-        const response = await axiosCommon.get("/price"
-        );
-        
-        return response.data;
-      },
-      staleTime: 1200000, 
-      cacheTime: 3600000, 
-    });
-
-if (isLoading) return <div className="flex justify-center items-center"><Loading/></div>
 
 
  
@@ -44,28 +27,8 @@ if (isLoading) return <div className="flex justify-center items-center"><Loading
         </p>
 
   <OfferBanners />
+  <ServicesList category={`piercing with gun`} />
 
-
-        <div className="space-y-4 border border-gray-200 p-3 rounded-lg">
-
-        { 
-  data?.filter(section => section.category === "Öronhåltagning med pistol")
-    .flatMap(section => section.items)
-    .map((item, idx) => (
-     
-<Link to={`/online-booking?name=${item.name}&price=${item.price}`} key={idx}>
-          <div className="flex justify-between items-center border-b pb-4 mt-2">
-            <div className="text-lg font-semibold text-white">{item.name}</div>
-            <div className="text-lg text-white">{item.price}</div>
-          </div>
-       
-</Link>
-    ))
-}
-
-
-
-        </div>
       </div>
     </div>
   );

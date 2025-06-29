@@ -16,7 +16,7 @@ const formattedDate = new Date(blog?.createdAt).toLocaleDateString("en-US", {
 });
 
   return (
-    <div className={`card shadow-xl hover:shadow-2xl transition duration-300 p-2 ${className}`}>
+    <div className={`card shadow-xl hover:shadow-2xl transition duration-300 p-2 card-color`}>
       <figure className="relative w-full h-48">
         <img
           src={`${import.meta.env.VITE_API_IMG}${blog?.image}`}
@@ -27,7 +27,7 @@ const formattedDate = new Date(blog?.createdAt).toLocaleDateString("en-US", {
         />
       </figure>
       <div className="card-body">
-        <h2 className="card-title text-primary">{blog?.title}</h2>
+        <h2 className="card-title text-blue-400">{blog?.title}</h2>
         <p className="text-sm text-gray-500">{formattedDate}</p>
         <p className="line-clamp-3">{preview}</p>
   

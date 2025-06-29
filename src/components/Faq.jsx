@@ -5,7 +5,7 @@ const Faq = () => {
   return (
     <div className="py-12">
       {/* Section Heading */}
-      <h2 className="text-3xl font-bold text-center text-blue-600 ch mb-8 flex justify-center items-center gap-2">
+      <h2 className="text-3xl font-bold text-center text-whitech mb-8 flex justify-center items-center gap-2">
       Vanliga frågor om piercing och öronhåltagning
       </h2>
 

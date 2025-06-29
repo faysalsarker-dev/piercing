@@ -2,22 +2,23 @@
 import { useQuery } from "@tanstack/react-query";
 import useApi from "../../../Hooks/useApi";
 import Loading from "../../../components/loading/Loading";
+import { useParams } from "react-router";
 
 
 
-export default function BlogPage({ slug }) {
+export default function BlogPage() {
 const api = useApi();
-
+const {slug} = useParams()
     const { data:post, isLoading, isError } = useQuery({
     queryKey: ["blogs",slug],
     queryFn: async () => {
       const { data } = await api.get(
-        `/blogs/${slug}?web=piercingsodermalm`
+        `/blogs/${slug}`
       );
       return data; 
     },
   });
-
+console.log(post);
 
 if (isLoading) return <Loading/>;
 if (isError) return <p className="text-center text-red-500">Error loading blog post.</p>;

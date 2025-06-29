@@ -12,7 +12,7 @@ const WhyChooseUs = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="text-3xl font-bold text-center text-blue-600 ch mb-8"
+        className="text-3xl font-bold text-center text-white ch mb-8"
       >
        Vad gör oss unika?
       </motion.h2>

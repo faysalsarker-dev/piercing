@@ -34,7 +34,7 @@ const axiosCommon = useAxios()
   return (
     <div className="container mx-auto px-4 py-12">
       {/* Heading */}
-      <h2 className="text-3xl font-bold text-center text-blue-600 ch mb-8">
+      <h2 className="text-3xl font-bold text-center text-white ch mb-8">
       vad våra kunder
       </h2>
 

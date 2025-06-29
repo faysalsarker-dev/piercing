@@ -5,20 +5,7 @@ import Logo from "/logo.png";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
- const [existingBooking, setExistingBooking] = useState([]);
-   const [_, setHasMounted] = useState(false);
-
-
-  useEffect(() => {
-        setHasMounted(true);
-
-    const stored = localStorage.getItem("myBookings");
-    if (stored) {
-     
-        setExistingBooking(JSON.parse(stored));
-      
-    }
-  }, []);
+ 
 
 
   const dropdownRef = useRef(null);
@@ -28,12 +15,10 @@ const Navbar = () => {
     { name: "Öronhåltagning", path: "/oronhåltagning" },
     { name: "After Care", path: "/after-care" },
     { name: "Silver smycke", path: "/silver-smycke" },
-      ...(existingBooking.length > 0
-    ? [{ name: 'Mina bokningar', path: '/my-bookings' }]
-    : []),
+ 
    
     { name: "Kontakta oss", path: "/contactus" },
-    { name: "Baku nu", path: "/online-booking" },
+    { name: "Baku nu", path: "https://klippsodermalm.simplybook.it/v2/" },
   ];
 
   const handleMenuToggle = () => {
@@ -61,7 +46,7 @@ const Navbar = () => {
 
 
   return (
-    <nav className="navbar shadow-sm md:px-6 px-3 flex justify-between items-center">
+    <nav className="navbar shadow-sm md:px-6 px-3 flex justify-between items-center fixed top-0 left-0 right-0 z-50 card-color">
       {/* Logo Section */}
       <div className="navbar-start w-32">
         <Link to="/">
